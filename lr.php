@@ -58,7 +58,7 @@ $pass=readline('dummy password: ');
 
 $user2 = readline('Username 1: ');
 $user322 = readline('Username 2: ');
-$user122 = 'readline('Username 3: ');
+$user122 = readline('Username 3: ');
 $user022 = readline('Username 4: ');
 
 // For output
