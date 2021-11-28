@@ -47,12 +47,13 @@ BWhite="\[\033[1;37m\]"       # White
 //echo "$ow";
 $dummyarray = []; 
 //$dummyarray = ['shib_aparri'];
-/*$NoofDum = readline('No of dummies to use?: ');
-//for ($x = 0;$x < $NoofDum;$x++) {
-//    $Dummy = readline('dummy username: ');
- //   array_push($dummyarray, "$Dummy",);
+
+$NoofDum = readline('No of dummies to use?: ');
+for ($x = 0;$x < $NoofDum;$x++) {
+    $Dummy = readline('dummy username: ');
+   array_push($dummyarray, "$Dummy",);
 }
-*/
+
 //$pass = 'Myleeyka'; 
 $pass=readline('dummy password: ');
 
