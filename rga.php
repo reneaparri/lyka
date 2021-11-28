@@ -55,11 +55,16 @@ for ($x = 0;$x < $NoofDum;$x++) {
 */
 
 //should use one password per dummy account
-$pass=readline('dummy password: ');
+//$pass=readline('dummy password: ');
+
+$pass ="Myleeyka";
 
 //get acct names to rate
-$acct1 = readline('Username 1: ');
+$acct1 = "rene_wolverine";
+
+
 /*
+$acct1 = readline('Username 1: ');
 $acct2 = readline('Username 2: ');
 $acct3 = readline('Username 3: ');
 $acct4 = readline('Username 4: ');
@@ -102,11 +107,12 @@ DATA;
     $vuser = $jsonn->data->username;
     $bearer = $jsonn->data->token->accessToken;
     
-      if ($status == 0) {
+    if ($status == 0) {
         echo "unable to login. incorrect password for $vuser";
     }
 
-    echo "$vuser login successful ";
+    echo "$vuser login successful
+    ";
 
   $json = json_decode($respp);
   $urlbal = "https://wallets.mylykaapps.com/api/v3/wallets/getgems?os=android";
@@ -123,7 +129,7 @@ DATA;
   ";
   
       if ($status == 1) {
-        $urlm = "https://users.mylykaapps.com/api/v3/users/searchsuggestedpeople?searchText=$user2&os=android&pageIndex=1&pageSize=16";
+        $urlm = "https://users.mylykaapps.com/api/v3/users/searchsuggestedpeople?searchText=$acct1&os=android&pageIndex=1&pageSize=16";
         $curlm = curl_init($urlm);
         curl_setopt($curlm, CURLOPT_URL, $urlm);
         curl_setopt($curlm, CURLOPT_RETURNTRANSFER, true);
