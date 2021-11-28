@@ -57,10 +57,10 @@ for ($x = 0;$x < $NoofDum;$x++) {
 //should use one password per dummy account
 //$pass=readline('dummy password: ');
 
-$pass ="Myleeyka";
+$pass ='Myleeyka';
 
 //get acct names to rate
-$acct1 = "rene_wolverine";
+$acct1 = 'rene_wolverine';
 
 
 /*
