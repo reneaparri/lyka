@@ -1,10 +1,12 @@
 <?php @system("clear");
 
-$Cyan="\[\033[0;36m\]" ;
+$Cyan="\033[0;36m" ;
 echo "$Cyan          
-LYKA auto-rater";
+LYKA auto-rater
+";
 echo "
-version: 1.0";
+version: 1.0
+";
 //$yellow = "[0;32m";
 //echo "$yellow
 //";
@@ -121,14 +123,14 @@ DATA;
 //  echo "<br>  
 //  ";
 
-  $BYellow="\[\033[1;33m\]";
+  $BYellow="\033[1;33m";
   echo "$BYellow
         $vuser is RATING (acct #1) $user2 ";
-  $Cyan="\[\033[0;36m\]" ;
+  $Cyan="\033[0;36m" ;
   
   echo "$Cyan";
   if ($status == 0) {
-        echo "incorrect dummy password ";
+        echo "unable to login. incorrect dummy username/password ";
     }
     if ($status == 1) {
         $urlm = "https://users.mylykaapps.com/api/v3/users/searchsuggestedpeople?searchText=$user2&os=android&pageIndex=1&pageSize=16";
@@ -210,7 +212,8 @@ DATA;
     $json = json_decode($resp);
 //    $yelow = "[0;35m";
 //    echo "$yelow";
-    echo "Post #1";
+    echo "Post #1
+    ";
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     $e = "[1;34m";
     echo "$e";
@@ -247,7 +250,8 @@ DATA;
     sleep(3);
    $e = "[1;34m";
     echo "$e";
-    echo "Post #2";
+    echo "Post #2
+    ";
     $curl3 = curl_init($url);
     curl_setopt($curl3, CURLOPT_URL, $url);
     curl_setopt($curl3, CURLOPT_POST, true);
@@ -279,7 +283,8 @@ DATA;
     echo $json3->message;
  //   $yelow = "[0;35m";
 //    echo "$yelow";
-    echo "Post #3";
+    echo "Post #3
+    ";
     sleep(3);
     
 //   $e = "[1;34m";
@@ -318,7 +323,8 @@ DATA;
     sleep(3);
 //   $e = "[1;34m";
 //    echo "$e";
-    echo "Post #4";
+    echo "Post #4
+    ";
     $curl5 = curl_init($url);
     curl_setopt($curl5, CURLOPT_URL, $url);
     curl_setopt($curl5, CURLOPT_POST, true);
@@ -354,7 +360,8 @@ DATA;
     
  //  $e = "[1;34m";
 //    echo "$e";
-    echo "Post #5";
+    echo "Post #5
+    ";
     $curl6 = curl_init($url);
     curl_setopt($curl6, CURLOPT_URL, $url);
     curl_setopt($curl6, CURLOPT_POST, true);
@@ -389,7 +396,8 @@ DATA;
     sleep(3);
 //    $e = "[1;34m";
  //   echo "$e";
-    echo "Post #6";
+    echo "Post #6
+    ";
     $curl7 = curl_init($url);
     curl_setopt($curl7, CURLOPT_URL, $url);
     curl_setopt($curl7, CURLOPT_POST, true);
@@ -424,7 +432,8 @@ DATA;
     sleep(3);
 //   $e = "[1;34m";
 //    echo "$e";
-    echo "Post #7";
+    echo "Post #7
+    ";
     $curl8 = curl_init($url);
     curl_setopt($curl8, CURLOPT_URL, $url);
     curl_setopt($curl8, CURLOPT_POST, true);
@@ -459,7 +468,8 @@ DATA;
     sleep(3);
 //   $e = "[1;34m";
 //    echo "$e";
-    echo "Post #8";
+    echo "Post #8
+    ";
     $curl9 = curl_init($url);
     curl_setopt($curl9, CURLOPT_URL, $url);
     curl_setopt($curl9, CURLOPT_POST, true);
@@ -494,7 +504,8 @@ DATA;
     sleep(3);
 //   $e = "[1;34m";
 //    echo "$e";
-    echo "Post #9";
+    echo "Post #9
+    ";
     $curl11 = curl_init($url);
     curl_setopt($curl11, CURLOPT_URL, $url);
     curl_setopt($curl11, CURLOPT_POST, true);
@@ -529,7 +540,8 @@ DATA;
     sleep(3);
 //   $e = "[1;34m";
 //    echo "$e";
-    echo "Post #10";
+    echo "Post #10
+    ";
     $curl10 = curl_init($url);
     curl_setopt($curl10, CURLOPT_URL, $url);
     curl_setopt($curl10, CURLOPT_POST, true);
@@ -557,6 +569,9 @@ DATA;
     $resp10 = curl_exec($curl10);
     curl_close($curl10);
     //var_dump($resp2);
+    echo "Post #11
+    ";	
+	
     $json10 = json_decode($resp10);
     echo $json10->message;
  //   $yelow = "[0;35m";
@@ -568,10 +583,10 @@ DATA;
  //   echo "<br> " ;
  
  
-   $BYellow="\[\033[1;33m\]";
+   $BYellow="\033[1;33m";
   echo "$BYellow
         $vuser is RATING (acct #2) $user022 ";
-  $Cyan="\[\033[0;36m\]" ;
+  $Cyan="\033[0;36m" ;
   
   echo "$Cyan";
  
@@ -992,10 +1007,10 @@ DATA;
 //    echo " ";
 //    echo "<br>"
 
-  $BYellow="\[\033[1;33m\]";
+  $BYellow="\033[1;33m";
   echo "$BYellow
         $vuser is RATING (acct #3) $user122 ";
-  $Cyan="\[\033[0;36m\]" ;
+  $Cyan="\033[0;36m" ;
   
   echo "$Cyan";
 
@@ -1399,7 +1414,7 @@ DATA;
     //var_dump($resp11);
     $json11 = json_decode($resp11);
     echo $json11->message;
-    $yellow = "[0;32m";
+ //   $yellow = "[0;32m";
 //    echo "$yellow
 //";
     echo "=====================================================";
@@ -1411,10 +1426,10 @@ DATA;
  //   echo "$ow";
  //   echo "";
  //   echo "<br>"
-   $BYellow="\[\033[1;33m\]";
+   $BYellow="\033[1;33m";
   echo "$BYellow
         $vuser is RATING (acct #4) $user322 ";
-  $Cyan="\[\033[0;36m\]" ;
+  $Cyan="\033[0;36m" ;
   
   echo "$Cyan";
 
@@ -1821,10 +1836,10 @@ DATA;
     $json10 = json_decode($resp10);
     echo $json10->message;
     
-    $BWhite="\[\033[1;37m\]";
+    $BWhite="\033[1;37m";
   echo "$BWhite
         Retrieving dummy balance ";
-  $Cyan="\[\033[0;36m\]" ;
+  $Cyan="\033[0;36m" ;
   
   echo "$Cyan";
     //retrieve dummy balance
@@ -1871,10 +1886,12 @@ DUMMY BALANCE $tg2 GEMS
     
     
     echo "
-Added gems to dummy: +$tg2 GEMS   ";  
+GEMS transferred to main: +$tg2 GEMS   ";  
     echo "=====================================================";    
-    $BWhite="\[\033[1;37m\]";
+    $BWhite="\033[1;37m";
       
     echo "$BWhite
-    aparri software";
+    aparri software
+    
+    ";
 }
