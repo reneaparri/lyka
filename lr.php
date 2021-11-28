@@ -14,9 +14,9 @@ echo "==================================================";
 //$yellow = "[0;36m";
 echo "
 this script will perform max rate (5 gems)
-to your posts!
----------------------------------------------------------------
-modded by: asd
+to your posts! (max of 11 posts)
+----
+modified by aparri software
 
 ";
 
@@ -44,9 +44,6 @@ BWhite="\[\033[1;37m\]"       # White
 */
 
 
-//  $';
-//$ow = "[1;33m";
-//echo "$ow";
 $dummyarray = []; 
 //$dummyarray = ['shib_aparri'];
 
@@ -67,8 +64,7 @@ $user022 = readline('Username 4: ');
 // For output
 
 foreach ($dummyarray as $user) {
-//    $green = "[1;34m";
-//    echo "$green";
+
     $urll = "https://identity.mylykaapps.com/useraccounts/login";
     $curll = curl_init($urll);
     curl_setopt($curll, CURLOPT_URL, $urll);
@@ -102,9 +98,7 @@ DATA;
     $status = $jsonn->status;
     $vuser = $jsonn->data->username;
     $bearer = $jsonn->data->token->accessToken;
-//    echo $yellow = "[1;33m";
-//    echo "$yellow"
-//    echo "<br>"
+
     echo "$vuser login successful ";
  
   $json = json_decode($respp);
@@ -118,10 +112,9 @@ DATA;
 
   $jsonbal = json_decode($respbal);
   $tg = $jsonbal->data->totalGem;
-  echo "Dummy balance : $tg GEMS   ";
-  
-//  echo "<br>  
-//  ";
+  echo "Dummy balance : $tg GEMS   
+  ";
+
 
   $BYellow="\033[1;33m";
   echo "$BYellow
@@ -180,8 +173,7 @@ DATA;
     if ($stat == 0) {
         echo "check your inputs";
     } elseif ($stat == 1) //$yelow = "[1;34m";
-    
-    //echo "$yelow";
+
     $url = "https://posts.mylykaapps.com/api/v3/posts/ratepost";
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_URL, $url);
@@ -210,13 +202,11 @@ DATA;
     curl_close($curl);
     //var_dump($resp);
     $json = json_decode($resp);
-//    $yelow = "[0;35m";
-//    echo "$yelow";
+
     echo "Post #1
     ";
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    $e = "[1;34m";
-    echo "$e";
+
     $curl2 = curl_init($url);
     curl_setopt($curl2, CURLOPT_URL, $url);
     curl_setopt($curl2, CURLOPT_POST, true);
@@ -245,11 +235,9 @@ DATA;
     //var_dump($resp2);
     $json2 = json_decode($resp2);
     echo $json2->message;
- //   $yelow = "[0;35m";
- //   echo "$yelow";
+
     sleep(3);
-   $e = "[1;34m";
-    echo "$e";
+
     echo "Post #2
     ";
     $curl3 = curl_init($url);
@@ -281,14 +269,11 @@ DATA;
     //var_dump($resp2);
     $json3 = json_decode($resp3);
     echo $json3->message;
- //   $yelow = "[0;35m";
-//    echo "$yelow";
+
     echo "Post #3
     ";
     sleep(3);
     
-//   $e = "[1;34m";
-//    echo "$e";
     $curl4 = curl_init($url);
     curl_setopt($curl4, CURLOPT_URL, $url);
     curl_setopt($curl4, CURLOPT_POST, true);
@@ -318,11 +303,9 @@ DATA;
     //var_dump($resp2);
     $json4 = json_decode($resp4);
     echo $json4->message;
-//    $yelow = "[0;35m";
-//    echo "$yelow";
+
     sleep(3);
-//   $e = "[1;34m";
-//    echo "$e";
+
     echo "Post #4
     ";
     $curl5 = curl_init($url);
@@ -354,12 +337,10 @@ DATA;
     //var_dump($resp2);
     $json5 = json_decode($resp5);
     echo $json5->message;
- //   $yelow = "[0;35m";
-//    echo "$yelow";
+
     sleep(3);
     
- //  $e = "[1;34m";
-//    echo "$e";
+
     echo "Post #5
     ";
     $curl6 = curl_init($url);
@@ -391,11 +372,9 @@ DATA;
     //var_dump($resp2);
     $json6 = json_decode($resp6);
     echo $json6->message;
- //   $yelow = "[0;35m";
- //   echo "$yelow";
+
     sleep(3);
-//    $e = "[1;34m";
- //   echo "$e";
+
     echo "Post #6
     ";
     $curl7 = curl_init($url);
@@ -427,11 +406,9 @@ DATA;
     //var_dump($resp2);
     $json7 = json_decode($resp7);
     echo $json7->message;
-//    $yelow = "[0;35m";
-//    echo "$yelow";
+
     sleep(3);
-//   $e = "[1;34m";
-//    echo "$e";
+
     echo "Post #7
     ";
     $curl8 = curl_init($url);
@@ -463,11 +440,9 @@ DATA;
     //var_dump($resp2);
     $json8 = json_decode($resp8);
     echo $json8->message;
-//    $yelow = "[0;35m";
-//    echo "$yelow";
+
     sleep(3);
-//   $e = "[1;34m";
-//    echo "$e";
+
     echo "Post #8
     ";
     $curl9 = curl_init($url);
@@ -499,11 +474,9 @@ DATA;
     //var_dump($resp2);
     $json9 = json_decode($resp9);
     echo $json9->message;
- //   $yelow = "[0;35m";
- //   echo "$yelow";
+
     sleep(3);
-//   $e = "[1;34m";
-//    echo "$e";
+
     echo "Post #9
     ";
     $curl11 = curl_init($url);
@@ -535,11 +508,9 @@ DATA;
     //var_dump($resp11);
     $json11 = json_decode($resp11);
     echo $json11->message;
-//    $yelow = "[0;35m";
- //   echo "$yelow";
+
     sleep(3);
-//   $e = "[1;34m";
-//    echo "$e";
+
     echo "Post #10
     ";
     $curl10 = curl_init($url);
@@ -574,14 +545,8 @@ DATA;
 	
     $json10 = json_decode($resp10);
     echo $json10->message;
- //   $yelow = "[0;35m";
- //   echo "$yelow";
- //   echo "<br>"
+
   // For output
-//    $ow = "[1;33m";
-//    echo "$ow";
- //   echo "<br> " ;
- 
  
    $BYellow="\033[1;33m";
   echo "$BYellow
@@ -590,7 +555,7 @@ DATA;
   
   echo "$Cyan";
  
- //   echo "<br>"
+ 
     $urlm = "https://users.mylykaapps.com/api/v3/users/searchsuggestedpeople?searchText=$user022&os=android&pageIndex=1&pageSize=16";
     $curlm = curl_init($urlm);
     curl_setopt($curlm, CURLOPT_URL, $urlm);
@@ -670,7 +635,6 @@ DATA;
     //var_dump($resp);
     $json = json_decode($resp);
     echo $json->message;
- //   echo "<br>"
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     sleep(1);
     $curl2 = curl_init($url);
