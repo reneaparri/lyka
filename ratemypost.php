@@ -137,10 +137,13 @@ DATA;
   
   foreach($accounts as $mainacct) {
  //$acct1 - start of code  
- 
+    echo "\033[0;33m"
     echo "$mainacct is being rated
 	";
-  
+    echo "
+    ";
+    echo "\033[0;36m\";
+    
       if ($status == 1) {
         $urlm = "https://users.mylykaapps.com/api/v3/users/searchsuggestedpeople?searchText=$mainacct&os=android&pageIndex=1&pageSize=16";
         $curlm = curl_init($urlm);
@@ -198,6 +201,8 @@ DATA;
    
    
 //RATING acct1 POST 1    
+    echo "
+    ";
     echo "Rating $mainacct post #1 - ";
     echo "
     ";
@@ -229,13 +234,14 @@ DATA;
     //var_dump($resp);
     $json = json_decode($resp);
     echo $json->message; 
-    echo "
+    echo "                              
+    
     ";
 
 //END OF RATING acct1 POST 1
     
 //RATING acct1 POST 2   
-    echo "Rating post $mainacct #2 - ";    
+    echo "rating $mainacct post #2 - ";    
     echo "
     ";
     $curl = curl_init($url);
@@ -671,7 +677,7 @@ DUMMY BALANCE $tg2 GEMS
  
     
     
-    echo "GEMS transferred to main: +$tg2 GEMS   ";  
+    echo "GEMS transferred to main . $accounts[0] .: +$tg2 GEMS   ";  
     echo "
     ";
   
