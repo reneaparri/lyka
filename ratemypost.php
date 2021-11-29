@@ -53,7 +53,7 @@ $dummyarray = ['shib_aparri'];
 //   array_push($dummyarray, "$Dummy",);
 //   $pass = readline('dummy password:' );
 //   array_push($passarray,"$pass");
-}
+//}
 
 
 //should use one password per dummy account
