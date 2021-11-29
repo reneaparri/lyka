@@ -97,24 +97,25 @@ foreach ($dummyarray as $user) {
   "username": "$user"
 }
 DATA;
+
     curl_setopt($curll, CURLOPT_POSTFIELDS, $dataa);
     $respp = curl_exec($curll);
     curl_close($curll);
-    //var_dump($respp);
     $jsonn = json_decode($respp);
     $msgn = $jsonn->message;
     $status = $jsonn->status;
     $vuser = $jsonn->data->username;
     $bearer = $jsonn->data->token->accessToken;
-    
+    $json = json_decode($respp);   
+	
     if ($status == 0) {
-        echo "unable to login. incorrect password for $vuser";
+        echo "unable to login. incorrect password for $user";
     }
 
-    echo "$vuser login successful
+    echo "$user login successful
     ";
 
-  $json = json_decode($respp);
+
   $urlbal = "https://wallets.mylykaapps.com/api/v3/wallets/getgems?os=android";
   $curlbal = curl_init($urlbal);
   curl_setopt($curlbal, CURLOPT_URL, $urlbal);
@@ -193,6 +194,7 @@ DATA;
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $data = <<<DATA
+	{
     "device": {
     "deviceId": "fcbe87b62342fbac",
     "deviceImei": "fcbe87b62342fbac",
@@ -227,6 +229,7 @@ DATA;
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $data = <<<DATA
+	{
     "device": {
     "deviceId": "fcbe87b62342fbac",
     "deviceImei": "fcbe87b62342fbac",
@@ -261,6 +264,7 @@ DATA;
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $data = <<<DATA
+	{
     "device": {
     "deviceId": "fcbe87b62342fbac",
     "deviceImei": "fcbe87b62342fbac",
@@ -295,6 +299,7 @@ DATA;
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $data = <<<DATA
+	{
     "device": {
     "deviceId": "fcbe87b62342fbac",
     "deviceImei": "fcbe87b62342fbac",
@@ -331,6 +336,7 @@ DATA;
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $data = <<<DATA
+	{
     "device": {
     "deviceId": "fcbe87b62342fbac",
     "deviceImei": "fcbe87b62342fbac",
@@ -365,6 +371,7 @@ DATA;
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $data = <<<DATA
+	{
     "device": {
     "deviceId": "fcbe87b62342fbac",
     "deviceImei": "fcbe87b62342fbac",
@@ -399,6 +406,7 @@ DATA;
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $data = <<<DATA
+	{
     "device": {
     "deviceId": "fcbe87b62342fbac",
     "deviceImei": "fcbe87b62342fbac",
@@ -433,6 +441,7 @@ DATA;
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $data = <<<DATA
+	{
     "device": {
     "deviceId": "fcbe87b62342fbac",
     "deviceImei": "fcbe87b62342fbac",
@@ -467,6 +476,7 @@ DATA;
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $data = <<<DATA
+	{
     "device": {
     "deviceId": "fcbe87b62342fbac",
     "deviceImei": "fcbe87b62342fbac",
@@ -501,6 +511,7 @@ DATA;
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $data = <<<DATA
+	{
     "device": {
     "deviceId": "fcbe87b62342fbac",
     "deviceImei": "fcbe87b62342fbac",
@@ -535,6 +546,7 @@ DATA;
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     $data = <<<DATA
+	{
     "device": {
     "deviceId": "fcbe87b62342fbac",
     "deviceImei": "fcbe87b62342fbac",
@@ -641,7 +653,6 @@ aparri software
     
 
 } //end of foreach
-
 
 
 
