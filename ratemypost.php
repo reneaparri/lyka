@@ -72,7 +72,7 @@ $acct2 = readline('Username 2: ');
 //$acct4 = readline('Username 4: ');
 */
 
-$accounts=array('jade_ashley01','jie_ferraris','joegie01','joegie01')
+$accounts=array('jade_ashley01','jie_ferraris','joegie01','joegie01');
 
 foreach ($dummyarray as $user) {
  //  $newpass=$passarray()
@@ -135,7 +135,7 @@ DATA;
   ";
   
   
-  foreach($accounts as $mainacct){
+  foreach($accounts as $mainacct) {
  //$acct1 - start of code  
  
     echo "$mainacct is being rated
