@@ -31,15 +31,11 @@ $Yellow="\033[0;33m"   ;
 $CyanBold="\033[1;36m" ;
 
 echo "$CyanBold";
-echo "===================================
-";
-echo "LYKA auto-rater ver 1.0
-";
-
-echo "===================================
-this script will perform max rate (5 gems)
-to your posts! (max of 11 posts/account)
-";
+echo "===================================\n";
+echo "LYKA auto-rater ver 1.0\n";
+echo "===================================\n
+this script will perform max rate (5 gems)\n
+to your posts! (max of 11 posts/account)";
 echo "\n\n";
 
 
@@ -60,10 +56,10 @@ for ($x = 0;$x < $NoofDum;$x++) {
 //   array_push($passarray,"$pass");
 }
 
-
 //should use one password per dummy account
 $pass=readline('dummy password: ');
 
+echo "$Yellow\n";
 //$pass ='Myleeyka';
 
 //get acct names to rate
@@ -71,22 +67,13 @@ $pass=readline('dummy password: ');
 $accounts=[];
 
 for ($x=0; $x<4;$x++){
-  $dummyuser=readline('user name to rate : ');
+  $dummyuser=readline('username $x to rate : ');
   if ($dummyuser !='') {  
   array_push($accounts,"$dummyuser");
   }
 }
-/*
-
-$acct1 = readline('Username 1: ');
-$acct2 = readline('Username 2: ');
-//$acct3 = readline('Username 3: ');
-//$acct4 = readline('Username 4: ');
-
-*/
 
 foreach ($dummyarray as $user) {
- //  $newpass=$passarray()
 
     $urll = "https://identity.mylykaapps.com/useraccounts/login";
     $curll = curl_init($urll);
@@ -126,9 +113,8 @@ DATA;
     if ($status == 0) {
         echo "unable to login. incorrect password for $user";
     }
-    echo "$Cyan";
-    echo "$user login successful
-    ";
+    echo "$Cyan\n";
+    echo "$user login successful\n";
 
   $urlbal = "https://wallets.mylykaapps.com/api/v3/wallets/getgems?os=android";
   $curlbal = curl_init($urlbal);
@@ -140,20 +126,15 @@ DATA;
 
   $jsonbal = json_decode($respbal);
   $tg = $jsonbal->data->totalGem;
-  echo "Dummy balance : $tg GEMS   
-  ";
-  ///
-  ///
-  ///
-  ///
+  echo "Dummy balance : $tg GEMS\n";
+
   //
   
   foreach($accounts as $mainacct) {
  //$acct1 - start of code  
-    echo "$Yellow";
-    echo "$mainacct is being rated\n\n";
-    echo "
-    ";
+    echo "$Yellow\n";
+    echo "$mainacct is being rated\n";
+
     echo "$Cyan";
     
       if ($status == 1) {
@@ -212,13 +193,9 @@ DATA;
    
 //RATING posts
 
- for ($postloop=1; $postloop<11; $postloop++) {   
+ for ($postloop=1; $postloop<12; $postloop++) {   
 
-    echo "
-    ";
-    echo "Max rating $mainacct post # $postloop \n";
-    echo "
-    ";
+    echo "Post # $postloop \n";
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_POST, true);
@@ -246,14 +223,15 @@ DATA;
     curl_close($curl);
     //var_dump($resp);
     $json = json_decode($resp);
+    echo "$Yellow"; 
     echo $json->message; 
-    echo "\n";
+    echo "$Cyan\n";
 
 }
 //END OF RATING post
 }   //end of foreach $accounts
 
-  echo "$Yellow\nuid - $uid\n\n"; 
+  //rene_wolverine uid = 700002814478
     //retrieve dummy balance
      
   echo "$BWhite";
