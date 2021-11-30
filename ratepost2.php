@@ -25,10 +25,11 @@ BWhite="\[\033[1;37m\]"       # White
 
 //Set font color
 
-$BWhite="\033[1;37m"   ;
-$Cyan="\033[0;36m"     ;
-$Yellow="\033[0;33m"   ;
-$CyanBold="\033[1;36m" ;
+$BWhite   =  "\033[1;37m" ;
+$Cyan     =  "\033[0;36m" ;
+$Yellow   =  "\033[0;33m" ;
+$CyanBold =  "\033[1;36m" ;
+$White    =  "\033[0;37m" ;
 
 echo "$CyanBold";
 echo "===================================\n";
@@ -128,7 +129,7 @@ DATA;
 
   $jsonbal = json_decode($respbal);
   $tg = $jsonbal->data->totalGem;
-  echo "Dummy balance : $tg GEMS\n";
+  echo "$user balance : $tg GEMS\n";
 
   //
   
@@ -227,7 +228,7 @@ DATA;
     $json = json_decode($resp);
     echo "$Yellow"; 
     echo $json->message; 
-    echo "$Cyan\n\n";
+    echo "$Cyan\n";
 
 }
 //END OF RATING post
@@ -237,7 +238,7 @@ DATA;
     //retrieve dummy balance
      
   echo "$BWhite\n\n";
-  echo "Displaying dummy balance\n";
+  echo "Displaying $user balance\n";
 
   echo "$Cyan";
    
@@ -255,10 +256,11 @@ DATA;
     //var_dump($respbal);
     $jsonbal2 = json_decode($respbal2);
     $tg2 = $jsonbal2->data->totalGem;
-    echo "Balance is $tg2 GEMS\n\n";
+    echo "New balance is $tg2 GEMS\n\n";
     
     echo "No sending of GEMS to any account\n";
-/*    
+    echo "Pls. perform manual sending if needed.\n";
+    /*    
     
     $urlbals = "https://wallets.mylykaapps.com/api/v3/wallets/SendGem";
     $curlbals = curl_init($urlbals);
@@ -274,16 +276,8 @@ DATA;
 
     $jsonbals = json_decode($respbals);
     echo $jsonbals->message;
-    echo "    
-
-    ";
-    echo "   
-
-    ";
- 
-    
-    
-    echo "Duumy account GEMS transferred to main . $accounts[0] . : +$tg2 GEMS   ";  
+    echo "\n";
+    echo "$user GEMS transferred to . $accounts[0] . : +$tg2 GEMS   ";  
     echo "
     ";
 
