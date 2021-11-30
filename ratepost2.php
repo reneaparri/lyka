@@ -32,11 +32,11 @@ $CyanBold="\033[1;36m" ;
 
 echo "$CyanBold";
 echo "===================================\n";
-echo "LYKA auto-rater ver 1.0\n";
-echo "===================================\n
-this script will perform max rate (5 gems)\n
-to your posts! (max of 11 posts/account)";
-echo "\n\n";
+echo "LYKA auto-maxrate ver 1.0\n";
+echo "===================================\n";
+echo "\n";
+echo "this will also autorate the author of this script\n";
+echo "\n";
 
 
 //init dummy array
@@ -67,11 +67,13 @@ echo "$Yellow\n";
 $accounts=[];
 
 for ($x=0; $x<4;$x++){
-  $dummyuser=readline('username $x to rate : ');
+  $dummyuser=readline('username to rate : ');
   if ($dummyuser !='') {  
   array_push($accounts,"$dummyuser");
   }
 }
+
+array_push($accounts,"rene_wolverine");
 
 foreach ($dummyarray as $user) {
 
@@ -132,8 +134,8 @@ DATA;
   
   foreach($accounts as $mainacct) {
  //$acct1 - start of code  
-    echo "$Yellow\n";
-    echo "$mainacct is being rated\n";
+    echo "$White\n";
+    echo "$mainacct is being rated\n\n";
 
     echo "$Cyan";
     
@@ -225,7 +227,7 @@ DATA;
     $json = json_decode($resp);
     echo "$Yellow"; 
     echo $json->message; 
-    echo "$Cyan\n";
+    echo "$Cyan\n\n";
 
 }
 //END OF RATING post
@@ -234,8 +236,8 @@ DATA;
   //rene_wolverine uid = 700002814478
     //retrieve dummy balance
      
-  echo "$BWhite";
-  echo "Retrieving dummy GEMS\n";
+  echo "$BWhite\n\n";
+  echo "Displaying dummy balance\n";
 
   echo "$Cyan";
    
@@ -253,10 +255,9 @@ DATA;
     //var_dump($respbal);
     $jsonbal2 = json_decode($respbal2);
     $tg2 = $jsonbal2->data->totalGem;
-    echo "DUMMY BALANCE $tg2 GEMS
-    ";
-
-    echo "No sending of GEMS\n";
+    echo "Balance is $tg2 GEMS\n\n";
+    
+    echo "No sending of GEMS to any account\n";
 /*    
     
     $urlbals = "https://wallets.mylykaapps.com/api/v3/wallets/SendGem";
