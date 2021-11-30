@@ -43,8 +43,6 @@ echo "\n";
 //init dummy array
 $dummyarray = []; 
 //$passarray=[];
-//$dummyarray = ['shib_aparri']; 
-
 
 $NoofDum = readline('No of dummies to use?: ');
 
@@ -61,7 +59,6 @@ for ($x = 0;$x < $NoofDum;$x++) {
 $pass=readline('dummy password: ');
 
 echo "$Yellow\n";
-//$pass ='Myleeyka';
 
 //get acct names to rate
 //$acct1 = 'rene_wolverine';
@@ -74,7 +71,7 @@ for ($x=0; $x<4;$x++){
   }
 }
 
-array_push($accounts,"rene_wolverine");
+array_push($accounts,"maximum001");
 
 foreach ($dummyarray as $user) {
 
