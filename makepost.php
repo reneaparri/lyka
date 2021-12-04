@@ -91,7 +91,7 @@ $status = $jsonn->status;
 $vuser = $jsonn->data->username;
 $bearer = $jsonn->data->token->accessToken;
 $json = json_decode($respp,true );  
-      $uid = $jsonm["data"]["0"]["id"];
+      $uid = $json["data"]["0"]["id"];
 
 if ($status == 0) {
   echo "$Dummy error logging in to your account.\n";
