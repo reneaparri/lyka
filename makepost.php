@@ -182,13 +182,13 @@ DATA;
 */
 
    $curl = curl_init();
-   curl_setopt_array($curl, array(CURLOPT_URL => 'https://posting.mylykaapps.com/api/v3/posts/addpost', CURLOPT_RETURNTRANSFER => true, CURLOPT_ENCODING => '', CURLOPT_MAXREDIRS => 10, CURLOPT_TIMEOUT => 0, CURLOPT_FOLLOWLOCATION => true, CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, CURLOPT_CUSTOMREQUEST => 'POST', CURLOPT_POSTFIELDS => array('boundary' => '7e9c11fd-987e-4b4f-bf14-8a04ac8da26e', 'title' => '', 'content' => '', 'url' => '', 'titleUrl' => '', 'descriptionUrl' => '', 'imageUrl' => 'https://www.w3schools.com/Css/img_5terre.jpg', 'hashtags' => '', 'deviceid' => 'fcbe86b842595c2f', 'devicemodel' => '', 'deviceos' => 'Xiaomi Redmi Note 5', 'osversion' => 'Android O_MR1', 'mediaTags' => '28'), CURLOPT_HTTPHEADER => array("authorization: Bearer $bearer", "user-agent: Lyka/3.6.16 (com.thingsilikeapp; build:816 Android O_MR1 28)"),));
+   curl_setopt_array($curl, array(CURLOPT_URL => 'https://media.mylykaapps.com/api/v1/media/social/multi-upload-url', CURLOPT_RETURNTRANSFER => true, CURLOPT_ENCODING => '', CURLOPT_MAXREDIRS => 10, CURLOPT_TIMEOUT => 0, CURLOPT_FOLLOWLOCATION => true, CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, CURLOPT_CUSTOMREQUEST => 'POST', CURLOPT_POSTFIELDS => array('boundary' => '7e9c11fd-987e-4b4f-bf14-8a04ac8da26e', 'title' => '', 'content' => '', 'url' => 'https://www.w3schools.com/Css/img_5terre.jpg', 'titleUrl' => 'https://www.w3schools.com/Css/img_5terre.jpg', 'descriptionUrl' => 'https://www.w3schools.com/Css/img_5terre.jpg', 'imageUrl' => 'https://www.w3schools.com/Css/img_5terre.jpg', 'hashtags' => '', 'deviceid' => 'fcbe86b842595c2f', 'devicemodel' => '', 'deviceos' => 'Xiaomi Redmi Note 5', 'osversion' => 'Android O_MR1', 'mediaTags' => '28'), CURLOPT_HTTPHEADER => array("authorization: Bearer $bearer", "user-agent: Lyka/3.6.16 (com.thingsilikeapp; build:816 Android O_MR1 28)"),));
    $response = curl_exec($curl);
    curl_close($curl);
    //echo $response;
    $json = json_decode($response);
    $mess = $json->message;
-   echo "$mess";
+   echo "$mess\n";
 
 
 
