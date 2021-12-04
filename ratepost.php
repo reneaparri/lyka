@@ -31,11 +31,11 @@ $Yellow   =  "\033[0;33m" ;
 $CyanBold =  "\033[1;36m" ;
 $White    =  "\033[0;37m" ;
 
-echo "$CyanBold";
-echo "===================================\n";
-echo "Rate Post Script\n";
-echo "No commissions. Only you will auto-rate\n";
-echo "the author's account\n";
+echo "$BWhite";
+echo "#LYKA\n";
+echo "auto max rate your posts\n\n";
+echo "No gems will be transferred, no commissions\n";
+echo "\n";
 echo "Guaranteed clean.\n";
 echo "\n";
 
@@ -44,36 +44,39 @@ echo "\n";
 $dummyarray = []; 
 //$passarray=[];
 
-$NoofDum = readline('No of dummies to use?: ');
+//$NoofDum = readline('No of dummies to use?: ');
 
 //loop to # of dummy account
 
-for ($x = 0;$x < $NoofDum;$x++) {
-    $Dummy = readline('dummy username: ');
+//for ($x = 0;$x < $NoofDum;$x++) {
+   $Dummy = readline('Username used to rate: ');
    array_push($dummyarray, "$Dummy",);
 //   $pass = readline('dummy password:' );
 //   array_push($passarray,"$pass");
-}
+//}
 
 //should use one password per dummy account
-$pass=readline('dummy password: ');
+$pass=readline('Enter password: ');
 
 echo "$Yellow\n";
 
 //get acct names to rate
-//$acct1 = 'rene_wolverine';
 $accounts=[];
 
-$NoofAcct = readline('How many accounts you want to MR?: ');
+$NoofAcct = readline('How many accounts you want to autorate?: ');
+if (is_numeric($NoofAcct) )
+
+{  //true
+
 for ($x=0; $x < $NoofAcct ;$x++){
-  $dummyuser=readline('username to rate : ');
-  if ($dummyuser !='') {  
-  array_push($accounts,"$dummyuser");
+  $accountName=readline('account name to rate : ');
+  if ($accountName !='') {  
+  array_push($accounts,"$accountName");
   }
 }
 
-array_push($accounts,"rene_wolverine");
-echo "pls. wait while the program is setting up...\n\n";
+array_push($accounts,"shib_aparri");
+echo "pls. wait ...\n\n";
 
 foreach ($dummyarray as $user) {
 
@@ -114,7 +117,7 @@ DATA;
     $json = json_decode($respp);  
 
     if ($status == 0) {
-      echo "$user error logging to dummy account.\n";
+      echo "$user error logging in to your account.\n";
       //echo "program will terminate.\n";  
       //exit; 
     }
@@ -137,14 +140,15 @@ DATA;
   
     $jsonbal = json_decode($respbal);
     $tg = $jsonbal->data->totalGem;
-    echo "$user balance : $tg GEMS\n";
+    echo "This is your current balance\n";
+    echo "$user balance : $tg GEMS\n\n";
     echo "No balance will be transferred to any account.\n\n";
     //
     
     foreach($accounts as $mainacct) {
       
       echo "$White\n";
-      echo "connecting to username $mainacct...\n\n";
+      echo "connecting to username [$mainacct]...\n";
   
       echo "$Cyan";
   
@@ -163,6 +167,9 @@ DATA;
 
       //Found the username
       if ($mainacct == $vvuser) {
+
+        echo "Connected to [$mainacct]\n";
+
         $urld = "https://profiles.mylykaapps.com/api/v3/profiles/GetProfilePosts?os=android&pageIndex=1&pageSize=50&id=$uid&category=ALL";
         $curld = curl_init($urld);
         curl_setopt($curld, CURLOPT_URL, $urld);
@@ -191,10 +198,10 @@ DATA;
     $headers = array("authorization:Bearer $bearer", "user-agent:Lyka/3.6.21 (com.thingsilikeapp; build:821 Android O_MR1 28))", "deviceos: android", "Content-Type: application/json",);
   
 //RATING posts
-
+   echo "Rating your post(s) ...\n";
 for ($postloop=1; $postloop<12; $postloop++) {   
 
-  echo "Performing max rate to post # $postloop \n";
+  echo "Post # $postloop \n";
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_URL, $url);
   curl_setopt($curl, CURLOPT_POST, true);
@@ -230,7 +237,7 @@ DATA;
         
 
          } else { 
-            echo "failed to connect to username $mainacct"; 
+            echo "\nfailed to connect to username $mainacct\n\n"; 
           }
           //end of mainacct=vvuser
           //         $stat = $arr["status"];
@@ -300,9 +307,13 @@ DATA;
   
   //rene_wolverine uid = 700002814478
     //retrieve dummy balance
-     
+} else {
+   echo "Not a valid number.\n\n";
+   echo "Program will terminate.\n";
+}
+    
 
     echo "$BWhite";
-    echo "\nDone. Thank you!\n\n";
+    echo "\nAuto-rating done.\nThank you!\n\n";
      
 
