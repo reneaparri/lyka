@@ -114,9 +114,9 @@ DATA;
     $json = json_decode($respp);   
 	
     if ($status == 0) {
-        echo "unable to login. incorrect password for $user\n";
-        echo "program will terminate.\n";  
-        exit; 
+        echo "$user error logging to dummy account.\n";
+        //echo "program will terminate.\n";  
+        //exit; 
       }
     echo "$Cyan\n";
     echo "$user login successful\n";
