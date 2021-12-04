@@ -90,7 +90,8 @@ $msgn = $jsonn->message;
 $status = $jsonn->status;
 $vuser = $jsonn->data->username;
 $bearer = $jsonn->data->token->accessToken;
-$json = json_decode($respp);  
+$json = json_decode($respp,true );  
+      $uid = $jsonm["data"]["0"]["id"];
 
 if ($status == 0) {
   echo "$Dummy error logging in to your account.\n";
@@ -102,11 +103,13 @@ if ($status == 1) {
 
    echo "$Cyan\n";
    echo "$Dummy login successful\n";
-
+   echo "UserID | $uid\n\n";
 //loop 11 times
 for ($postloop=1; $postloop<12; $postloop++) { 
 
-   $url   ='https://posting.mylykaapps.com/api/v3/posts/addpost';
+  // $url   ='https://posting.mylykaapps.com/api/v3/posts/addpost';
+   
+   $url="https://media.mylykaapps.com/api/v1/media/social/multi-upload-url";
    $curl = curl_init($url);
    curl_setopt($curl, CURLOPT_URL, $url);
    curl_setopt($curl, CURLOPT_POST, true)   ; 
@@ -118,7 +121,11 @@ for ($postloop=1; $postloop<12; $postloop++) {
    curl_setopt($curl,CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
    curl_setopt($curl, CURLOPT_POST, true);
-      $data = <<<DATA
+   $data = <<<DATA
+   {"category":"post","clientId":"$uid",
+      "files":[{"fileName":"hakdog.jpeg", "mediaType":"image"}]}
+   DATA;
+      /*   $data = <<<DATA
          {  "boundary" :"7e9c11fd-987e-4b4f-bf14-8a04ac8da26e", 
            "title" : "", 
            "content" : "", 
@@ -138,6 +145,8 @@ for ($postloop=1; $postloop<12; $postloop++) {
    "osVersion": "28" 
 } 
 DATA;
+   */
+
    $headers =array("authorization: Bearer $bearer", "user-agent: Lyka/3.6.16 (com.thingsilikeapp; build:816 Android O_MR1 28)");
    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
