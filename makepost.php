@@ -93,7 +93,7 @@ $bearer = $jsonn->data->token->accessToken;
 $json = json_decode($respp);  
 
 if ($status == 0) {
-  echo "$user error logging in to your account.\n";
+  echo "$Dummy error logging in to your account.\n";
   //echo "program will terminate.\n";  
   //exit; 
 }
@@ -101,7 +101,7 @@ if ($status == 0) {
 if ($status == 1) {
 
    echo "$Cyan\n";
-   echo "$user login successful\n";
+   echo "$Dummy login successful\n";
 
 //loop 11 times
 for ($postloop=1; $postloop<12; $postloop++) { 
@@ -118,7 +118,7 @@ for ($postloop=1; $postloop<12; $postloop++) {
    curl_setopt($curl,CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
    curl_setopt($curl, CURLOPT_POST, true);
-      $Var_Data = <<<DATA
+      $data = <<<DATA
          {  "boundary" :"7e9c11fd-987e-4b4f-bf14-8a04ac8da26e", 
            "title" : "", 
            "content" : "", 
@@ -140,17 +140,17 @@ for ($postloop=1; $postloop<12; $postloop++) {
 DATA;
    $headers =array("authorization: Bearer $bearer", "user-agent: Lyka/3.6.16 (com.thingsilikeapp; build:816 Android O_MR1 28)");
    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-   curl_setopt($curl, CURLOPT_POSTFIELDS, $var_Data);
+   curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
    $response = curl_exec($curl);
    curl_close($curl);
    $json = json_decode($response);
    $mess = $json->message;
    echo "$mess\n";
-   echo "\nprogram exited\n";
+   
 
 
 } //end of for loop
-
+echo "\nprogram exited\n";
 
 } //end of status==1   
 
