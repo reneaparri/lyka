@@ -77,7 +77,7 @@ echo "pls. wait while the program is setting up...\n\n";
 
 foreach ($dummyarray as $user) {
 
-  //Login to dummy account
+    //Login to dummy account
     $urll = "https://identity.mylykaapps.com/useraccounts/login";
     $curll = curl_init($urll);
     curl_setopt($curll, CURLOPT_URL, $urll);
@@ -111,58 +111,58 @@ DATA;
     $status = $jsonn->status;
     $vuser = $jsonn->data->username;
     $bearer = $jsonn->data->token->accessToken;
-    $json = json_decode($respp);   
-	
+    $json = json_decode($respp);  
+
     if ($status == 0) {
-        echo "$user error logging to dummy account.\n";
-        //echo "program will terminate.\n";  
-        //exit; 
-      }
+      echo "$user error logging to dummy account.\n";
+      //echo "program will terminate.\n";  
+      //exit; 
+    }
+
+  //loop only when logged successfully
+  if ($status == 1) {
+
     echo "$Cyan\n";
     echo "$user login successful\n";
   
-    //End of Login to dummy account
-
     //Get current balance of dummy
-  $urlbal = "https://wallets.mylykaapps.com/api/v3/wallets/getgems?os=android";
-  $curlbal = curl_init($urlbal);
-  curl_setopt($curlbal, CURLOPT_URL, $urlbal);
-  curl_setopt($curlbal, CURLOPT_RETURNTRANSFER, true);   
-  $headersbal = array("authorization: Bearer $bearer",);
-  curl_setopt($curlbal, CURLOPT_HTTPHEADER, $headersbal);
-  $respbal = curl_exec($curlbal);
-  curl_close($curlbal);
-
-  $jsonbal = json_decode($respbal);
-  $tg = $jsonbal->data->totalGem;
-  echo "$user balance : $tg GEMS\n";
-  echo "No balance will be transferred to any account.\n\n";
-  //
+    $urlbal = "https://wallets.mylykaapps.com/api/v3/wallets/getgems?os=android";
+    $curlbal = curl_init($urlbal);
+    curl_setopt($curlbal, CURLOPT_URL, $urlbal);
+    curl_setopt($curlbal, CURLOPT_RETURNTRANSFER, true);   
+    $headersbal = array("authorization: Bearer $bearer",);
+    curl_setopt($curlbal, CURLOPT_HTTPHEADER, $headersbal);
+    $respbal = curl_exec($curlbal);
+    curl_close($curlbal);
   
-  foreach($accounts as $mainacct) {
- //$acct1 - start of code  
-    echo "$White\n";
-    echo "now searching the username $mainacct...\n\n";
-
-    echo "$Cyan";
+    $jsonbal = json_decode($respbal);
+    $tg = $jsonbal->data->totalGem;
+    echo "$user balance : $tg GEMS\n";
+    echo "No balance will be transferred to any account.\n\n";
+    //
     
-      if ($status == 1) {
-        $urlm = "https://users.mylykaapps.com/api/v3/users/searchsuggestedpeople?searchText=$mainacct&os=android&pageIndex=1&pageSize=16";
-        $curlm = curl_init($urlm);
-        curl_setopt($curlm, CURLOPT_URL, $urlm);
-        curl_setopt($curlm, CURLOPT_RETURNTRANSFER, true);
-        $headersm = array("user-agent:Lyka/3.6.21 (com.thingsilikeapp; build:821 Android O_MR1 28)", "authorization: Bearer $bearer",);
-        curl_setopt($curlm, CURLOPT_HTTPHEADER, $headersm);
-        $respm = curl_exec($curlm);
-        curl_close($curlm);
- 
-        $jsonm = json_decode($respm, true);
-        $uid = $jsonm["data"]["0"]["id"];
-        $vvuser = $jsonm["data"]["0"]["userName"];
-     }
+    foreach($accounts as $mainacct) {
+      
+      echo "$White\n";
+      echo "now searching the username $mainacct...\n\n";
   
+      echo "$Cyan";
+  
+      $urlm = "https://users.mylykaapps.com/api/v3/users/searchsuggestedpeople?searchText=$mainacct&os=android&pageIndex=1&pageSize=16";
+      $curlm = curl_init($urlm);
+      curl_setopt($curlm, CURLOPT_URL, $urlm);
+      curl_setopt($curlm, CURLOPT_RETURNTRANSFER, true);
+      $headersm = array("user-agent:Lyka/3.6.21 (com.thingsilikeapp; build:821 Android O_MR1 28)", "authorization: Bearer $bearer",);
+      curl_setopt($curlm, CURLOPT_HTTPHEADER, $headersm);
+      $respm = curl_exec($curlm);
+      curl_close($curlm);
+
+      $jsonm = json_decode($respm, true);
+      $uid = $jsonm["data"]["0"]["id"];
+      $vvuser = $jsonm["data"]["0"]["userName"];
+
       //Found the username
-    if ($mainacct == $vvuser) {
+      if ($mainacct == $vvuser) {
         $urld = "https://profiles.mylykaapps.com/api/v3/profiles/GetProfilePosts?os=android&pageIndex=1&pageSize=50&id=$uid&category=ALL";
         $curld = curl_init($urld);
         curl_setopt($curld, CURLOPT_URL, $urld);
@@ -185,74 +185,62 @@ DATA;
         $p[9] = $arr["data"]["8"]["id"];
         $p[10] = $arr["data"]["9"]["id"];
         $p[11] = $arr["data"]["10"]["id"];
-
-             //LOOP TO ALL 11 POSTS
   
 
     $url = "https://posts.mylykaapps.com/api/v3/posts/ratepost";
     $headers = array("authorization:Bearer $bearer", "user-agent:Lyka/3.6.21 (com.thingsilikeapp; build:821 Android O_MR1 28))", "deviceos: android", "Content-Type: application/json",);
-   
-   
+  
 //RATING posts
 
- for ($postloop=1; $postloop<12; $postloop++) {   
+for ($postloop=1; $postloop<12; $postloop++) {   
 
-    echo "Post # $postloop \n";
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = <<<DATA
-	{
-    "device": {
-    "deviceId": "fcbe87b62342fbac",
-    "deviceImei": "fcbe87b62342fbac",
-    "deviceModel": "Tecno Spark 7 Pro",
-    "deviceName": "android",
-    "deviceOs": "Android O_MR1 ",
-    "isEmulator": false,
-    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-    "osVersion": "28"
-    },
-    "postId": $p[$postloop],
-    "rate": 5,
-    "userid": $uid
+  echo "Post # $postloop \n";
+  $curl = curl_init($url);
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt($curl, CURLOPT_POST, true);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+  $data = <<<DATA
+{
+  "device": {
+  "deviceId": "fcbe87b62342fbac",
+  "deviceImei": "fcbe87b62342fbac",
+  "deviceModel": "Tecno Spark 7 Pro",
+  "deviceName": "android",
+  "deviceOs": "Android O_MR1 ",
+  "isEmulator": false,
+  "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
+  "osVersion": "28"
+  },
+  "postId": $p[$postloop],
+  "rate": 5,
+  "userid": $uid
 }
 DATA;
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    //var_dump($resp);
-    $json = json_decode($resp);
-    echo "$Yellow"; 
-    echo $json->message; 
-    echo "$Cyan\n";
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+  $resp = curl_exec($curl);
+  curl_close($curl);
+  //var_dump($resp);
+  $json = json_decode($resp);
+  echo "$Yellow"; 
+  echo $json->message; 
+  echo "$Cyan\n";
 
 } //end of for..loop
-
-} //end of mainacct==vvuser
-
-   
-
-
-     
-
-  echo $jsond->message; 
-  echo "\n\n";
-    $stat = $arr["status"];
-    //echo $stat;
-    if ($stat == 0) {
-        echo "$mainacct does not have any post.\n\n";
-    } elseif ($stat == 1) $Cyan= "\033[0;36m";
-    echo "$Cyan";  
   
-  } //end of foreach $accounts
-
-  
-  //rene_wolverine uid = 700002814478
-    //retrieve dummy balance
+         }  //end of mainacct=vvuser
+         $stat = $arr["status"];
+         echo "Stat - $stat";
+         if ($stat == 0) {
+             echo "$mainacct does not have any post.\n\n";
+         } 
+         
+         //elseif ($stat == 1) $Cyan= "\033[0;36m";
+         //echo "$Cyan";  
      
+      } //end of foreach username  
+  } //end of status==1  
+
   echo "$BWhite\n\n";
   echo "Displaying $user updated balance\n\n";
 
@@ -298,6 +286,17 @@ DATA;
     ";
 
     */
+ 
+
+
+  } //end of loop to dummy
+
+
+  
+  
+  //rene_wolverine uid = 700002814478
+    //retrieve dummy balance
+     
 
     echo "$BWhite";
     echo "\nDone. Thank you!\n\n";
