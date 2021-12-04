@@ -35,6 +35,8 @@ echo "$BWhite";
 echo "#LYKA\n";
 echo "Add post/moment\n\n";
 
+echo "Tip: Account should have same passsword.\n\n";
+
 //init dummy array
 $dummyarray = []; 
 //$passarray=[];
@@ -46,10 +48,11 @@ echo "$Cyan";
 //for ($x = 0;$x < $NoofDum;$x++) {
 do {
    $Dummy = readline('Input Username (or blank): ');
+  if ($Dummy !='') {
    array_push($dummyarray, "$Dummy",);
+   }
 //   $pass = readline('dummy password:' );
 //   array_push($passarray,"$pass");
-//}
 } while ($Dummy !='');
 
 $pass=readline('Enter password: ');
@@ -102,7 +105,7 @@ $vuser = $jsonn->data->username;
 $bearer = $jsonn->data->token->accessToken;
 
 if ($status == 0) {
-  echo "$user error logging in to your account.\n";
+  echo "Error logging in to $user.\n";
   //echo "program will terminate.\n";  
   //exit; 
 }
@@ -115,13 +118,13 @@ if ($status == 1) {
    //loop 11 times
 for ($postloop=1; $postloop<12; $postloop++) { 
    echo "$White";
-   echo "Adding post #$postloop to $vuser\n"; 
+   echo "\nAdding post #$postloop\n"; 
    //sleep(1);
    $device_id = 'fcbe87b62342fbac';
    echo "$Cyan";
    addPosts($vuser, $bearer, $device_id);
    echo "$Yellow";
-   echo "Adding moment #$postloop to $vuser\n"; 
+   echo "\nAdding moment #$postloop\n"; 
    addMoments($vuser, $bearer, $device_id);
 
 } //end of for loop
@@ -140,7 +143,6 @@ function addPosts($user, $bearer, $device_id) {
    $user_id = getUserId($device_id, $bearer);
    $device_id = $device_id;
 
-   echo "\nUploading Posts\n\n";
    $uploadLegacy = "https://media.mylykaapps.com/api/v1/media/social/multi-upload-url";
    $uploadPay = <<<DATA
        {"category":"post","clientId":"$user_id","files":[{"fileName":"https://www.w3schools.com/Css/img_lights.jpg", "mediaType":"image"}]}
@@ -275,7 +277,7 @@ function addPosts($user, $bearer, $device_id) {
                $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                // echo $http_code;
                if ($http_code != 200) {
-                   echo 'Error : Failed to upload';
+                   echo "Error : Failed to upload\n";
                }
                
                $delURL = "https://lyka-legacy-images-input.s3.ap-southeast-1.amazonaws.com/".$mediaID;
@@ -300,9 +302,11 @@ function addPosts($user, $bearer, $device_id) {
                    $uploadPost = "https://posting.mylykaapps.com/api/v3/posts/AddImagePost";
                    $post = postX($uploadPost, payload($device_id,'"files":[{"height":2081,"key":"'.$mediaID.'", "RemoteStorage":"lyka-legacy-images-input" ,"type":"image","width":1079}],"isHighlight":false,"isSharedLink":false,"mediaTags":"[[]]",title:""'), $bearer);
                    $response_message = $post->message;
-                   echo "$response_message.";
+                   //echo "$response_message.";
                    if (strstr($response_message, 'Post saved')) {
-                       $uploaded_count++;
+                     echo "Post added.\n";  
+                     
+                     $uploaded_count++;
                        $upload_attempt = 0;
                    } else {
                        echo "Upload failed. Retrying. \n";
@@ -459,7 +463,7 @@ function addMoments($user, $bearer, $device_id) {
                $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                // echo $http_code;
                if ($http_code != 200) {
-                   echo 'Error : Failed to upload';
+                   echo "Error : Failed to upload\n";
                }
                
                $delURL = "https://lyka-legacy-images-input.s3.ap-southeast-1.amazonaws.com/".$mediaID;
@@ -485,8 +489,7 @@ function addMoments($user, $bearer, $device_id) {
                    $momnts = postX($uploadMoment, payload($device_id,'"files":[{"height":2081,"key":"'.$mediaID.'", "RemoteStorage":"lyka-legacy-images-input" ,"type":"image","width":1079}]'), $bearer);
                    $response_message = $momnts->message;
                    if( $response_message == "Moment retrieved."){
-                       echo "
-.$response_message.";
+                       echo "Moment added\n";
                        $uploaded_count++;
                        $upload_attempt = 0;
                    } else {
@@ -501,7 +504,7 @@ function addMoments($user, $bearer, $device_id) {
            }
        }
    } else {
-       echo 'Error getting moments server data.';
+       echo "Error getting moments server data.\n";
    }
 }
 
@@ -564,7 +567,7 @@ function payload($devIDx, $xtraPay, $rTokenx = ""){
            {"device": {
                "deviceId": "$devIDx",
                "deviceImei": "",
-               "deviceModel": "Xiaomi Redmi Note 5",
+               "deviceModel": "Tecno Spark 7 Pro",
                "deviceName": "android",
                "deviceOs": "Android R ",
                "isEmulator": false,
