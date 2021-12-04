@@ -112,10 +112,10 @@ DATA;
     $bearer = $jsonn->data->token->accessToken;
     $json = json_decode($respp);   
 	
-    if ($status == 0) {
+    if ($status == 0){ 
         echo "unable to login. incorrect password for $user\n";
         echo "program will terminate.\n";  
-        exit 
+        exit ;
       }
     echo "$Cyan\n";
     echo "$user login successful\n";
