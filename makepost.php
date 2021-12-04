@@ -135,18 +135,18 @@ for ($postloop=1; $postloop<12; $postloop++) {
    "deviceOs": "Android O_MR1 ",
    "isEmulator": false,
    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-   "osVersion": "28" } 
-}
- DATA;
-       $headers =array("authorization: Bearer $bearer", "user-agent: Lyka/3.6.16 (com.thingsilikeapp; build:816 Android O_MR1 28)");
-       curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-       curl_setopt($curl, CURLOPT_POSTFIELDS, $var_Data);
+   "osVersion": "28" 
+} 
+DATA;
+   $headers =array("authorization: Bearer $bearer", "user-agent: Lyka/3.6.16 (com.thingsilikeapp; build:816 Android O_MR1 28)");
+   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+   curl_setopt($curl, CURLOPT_POSTFIELDS, $var_Data);
    $response = curl_exec($curl);
    curl_close($curl);
    $json = json_decode($response);
    $mess = $json->message;
-   echo "$mess";
-   echo "";
+   echo "$mess\n";
+   echo "\nprogram exited\n";
 
 
 } //end of for loop
