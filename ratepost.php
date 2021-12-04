@@ -227,16 +227,17 @@ DATA;
   echo "$Cyan\n";
 
           } //end of for..loop
-  
-         } else 
-          {
-            echo "failed to connect to username $mainacct"; //end of mainacct=vvuser
+        
+
+         } else { 
+            echo "failed to connect to username $mainacct"; 
           }
-            //         $stat = $arr["status"];
+          //end of mainacct=vvuser
+          //         $stat = $arr["status"];
 //         echo "Stat - $stat";
 //         if ($stat == 0) {
 //             echo "$mainacct does not have any post.\n\n";
-     } 
+//     } 
          
          //elseif ($stat == 1) $Cyan= "\033[0;36m";
          //echo "$Cyan";  
