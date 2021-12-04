@@ -78,7 +78,7 @@ $DeviceInfo = <<<DATA
 "osVersion": "28"
 },
 "password": "$pass",
-"username": "$dummy"
+"username": "$Dummy"
 }
 DATA;
 
