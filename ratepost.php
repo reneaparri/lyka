@@ -301,5 +301,3 @@ DATA;
     echo "$BWhite";
     echo "\nDone. Thank you!\n\n";
      
-
-} //end of foreach
