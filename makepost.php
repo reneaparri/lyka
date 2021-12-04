@@ -107,8 +107,8 @@ if ($status == 1) {
 
    echo "$Cyan\n";
    echo "$Dummy login successful\n";
-   echo "UserID | $uid\n\n";
-//loop 11 times
+  
+   //loop 11 times
 for ($postloop=1; $postloop<12; $postloop++) { 
 
 
@@ -123,15 +123,15 @@ echo "\nprogram exited\n";
 } //end of status==1   
 
 function addPosts($user, $bearer, $device_id) {
-   echo "\n Adding posts to $user \n";
+   echo "\nAdding posts to $user \n";
 
    $user_id = getUserId($device_id, $bearer);
    $device_id = $device_id;
 
-   echo "\n→ Uploading Posts\n\n";
+   echo "\nUploading Posts\n\n";
    $uploadLegacy = "https://media.mylykaapps.com/api/v1/media/social/multi-upload-url";
    $uploadPay = <<<DATA
-       {"category":"post","clientId":"$user_id","files":[{"fileName":"hakdog.jpeg", "mediaType":"image"}]}
+       {"category":"post","clientId":"$user_id","files":[{"fileName":"https://www.w3schools.com/Css/img_lights.jpg", "mediaType":"image"}]}
    DATA; 
    $uploadLegPost = postX($uploadLegacy,$uploadPay,$bearer);
 
@@ -311,10 +311,11 @@ function addMoments($user, $bearer, $device_id) {
 
    $user_id = getUserId($device_id, $bearer);
 
-   
+   echo "\nAdding moments\n";
+
    $uploadLegacy = "https://media.mylykaapps.com/api/v1/media/social/multi-upload-url";
    $uploadPay = <<<DATA
-       {"category":"moment","clientId":"$user_id","files":[{"fileName":"hakdog.jpeg", "mediaType":"image"}]}
+       {"category":"moment","clientId":"$user_id","files":[{"fileName":"https://www.w3schools.com/Css/img_lights.jpg", "mediaType":"image"}]}
    DATA; 
    $uploadLegPost = postX($uploadLegacy,$uploadPay,$bearer);
 
@@ -551,7 +552,7 @@ function payload($devIDx, $xtraPay, $rTokenx = ""){
            {"device": {
                "deviceId": "$devIDx",
                "deviceImei": "",
-               "deviceModel": "Xiaomi Redmi Note 5",
+               "deviceModel": "Tecno Spark 7 Pro",
                "deviceName": "android",
                "deviceOs": "Android R ",
                "isEmulator": false,
