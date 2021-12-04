@@ -45,7 +45,7 @@ $dummyarray = [];
 
 //for ($x = 0;$x < $NoofDum;$x++) {
    $Dummy = readline('Username to autopost: ');
-   array_push($dummyarray, "$Dummy",);
+//   array_push($dummyarray, "$Dummy",);
 //   $pass = readline('dummy password:' );
 //   array_push($passarray,"$pass");
 //}
@@ -78,7 +78,7 @@ $DeviceInfo = <<<DATA
 "osVersion": "28"
 },
 "password": "$pass",
-"username": "$user"
+"username": "$dummy"
 }
 DATA;
 
