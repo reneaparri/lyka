@@ -140,18 +140,20 @@ for ($postloop=1; $postloop<12; $postloop++) {
    curl_setopt($curl,CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
    curl_setopt($curl, CURLOPT_POST, true);
-   $data = <<<DATA
+  /* $data = <<<DATA
    {"category":"post","clientId":"$uid",
-      "files":[{"fileName":"hakdog.jpeg", "mediaType":"image"}]}
+      "files":[{"fileName":"hakdog.jpeg", "mediaType":"image"}]
+   }
    DATA;
-      /*   $data = <<<DATA
+   */
+      $data = <<<DATA
          {  "boundary" :"7e9c11fd-987e-4b4f-bf14-8a04ac8da26e", 
            "title" : "", 
            "content" : "", 
            "url" : "", 
            "titleUrl" : "", 
            "descriptionUrl" : "", 
-           "imageUrl" : "https://dh1u1gri6oel1.cloudfront.net/data/images/wishlists/500206482992/2021816/resized/dfe40ad5-c7a4-41a8-9086-d43c43d70f35.jpeg", 
+           "imageUrl" : "https://www.w3schools.com/Css/img_5terre.jpg", 
            "hashtags": "" , 
            "device": {
    "deviceId": "fcbe87b62342fbac",
@@ -164,7 +166,7 @@ for ($postloop=1; $postloop<12; $postloop++) {
    "osVersion": "28" 
 } 
 DATA;
-   */
+   
 
    $headers =array("authorization: Bearer $bearer", "user-agent: Lyka/3.6.16 (com.thingsilikeapp; build:816 Android O_MR1 28)");
    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
