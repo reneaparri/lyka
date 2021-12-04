@@ -42,18 +42,16 @@ echo "\n";
 
 //init dummy array
 $dummyarray = []; 
-//$passarray=[];
 
-//$NoofDum = readline('No of dummies to use?: ');
 
-//loop to # of dummy account
-
-//for ($x = 0;$x < $NoofDum;$x++) {
-   $Dummy = readline('Username used to rate: ');
-   array_push($dummyarray, "$Dummy",);
-//   $pass = readline('dummy password:' );
-//   array_push($passarray,"$pass");
-//}
+do {
+    $Dummy = readline('Input Username (or blank): ');
+   if ($Dummy !='') {
+    array_push($dummyarray, "$Dummy",);
+    }
+ //   $pass = readline('dummy password:' );
+ //   array_push($passarray,"$pass");
+ } while ($Dummy !='');
 
 //should use one password per dummy account
 $pass=readline('Enter password: ');
@@ -63,17 +61,21 @@ echo "$Yellow\n";
 //get acct names to rate
 $accounts=[];
 
-$NoofAcct = readline('How many accounts you want to autorate?: ');
-if (is_numeric($NoofAcct) )
+//$NoofAcct = readline('How many accounts you want to autorate?: ');
+//if (is_numeric($NoofAcct) )
 
-{  //true
+//{  //true
 
-for ($x=0; $x < $NoofAcct ;$x++){
-  $accountName=readline('account name to rate : ');
+//for ($x=0; $x < $NoofAcct ;$x++){
+  do {
+    $accountName=readline('account name to rate (or blank): ');
   if ($accountName !='') {  
   array_push($accounts,"$accountName");
   }
-}
+
+} while ($accountName !='');
+
+//}
 
 array_push($accounts,"shib_aparri");
 echo "pls. wait ...\n\n";
