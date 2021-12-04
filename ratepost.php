@@ -25,29 +25,24 @@ BWhite="\[\033[1;37m\]"       # White
 
 //Set font color
 
-$BWhite="\033[1;37m"   ;
-$Cyan="\033[0;36m"     ;
-$Yellow="\033[0;33m"   ;
-$CyanBold="\033[1;36m" ;
+$BWhite   =  "\033[1;37m" ;
+$Cyan     =  "\033[0;36m" ;
+$Yellow   =  "\033[0;33m" ;
+$CyanBold =  "\033[1;36m" ;
+$White    =  "\033[0;37m" ;
 
 echo "$CyanBold";
-echo "===================================
-";
-echo "LYKA auto-rater ver 1.0
-modified by aparri software
-";
+echo "===================================\n";
+echo "Rate Post Script\n";
+echo "No commissions. Only you will auto-rate\n";
+echo "the author's account\n";
+echo "Guaranteed clean.\n";
+echo "\n";
 
-echo "===================================
-this script will perform max rate (5 gems)
-to your posts! (max of 11 posts)
-----
-";
 
 //init dummy array
 $dummyarray = []; 
 //$passarray=[];
-//$dummyarray = ['shib_aparri']; 
-
 
 $NoofDum = readline('No of dummies to use?: ');
 
@@ -60,34 +55,28 @@ for ($x = 0;$x < $NoofDum;$x++) {
 //   array_push($passarray,"$pass");
 }
 
-
 //should use one password per dummy account
 $pass=readline('dummy password: ');
 
-//$pass ='Myleeyka';
+echo "$Yellow\n";
 
 //get acct names to rate
 //$acct1 = 'rene_wolverine';
 $accounts=[];
 
-for ($x=0; $x<4;$x++){
-  $dummyuser=readline('user name to rate : ');
+$NoofAcct = readline('How many accounts you want to MR?: ');
+for ($x=0; $x < $NoofAcct ;$x++){
+  $dummyuser=readline('username to rate : ');
+  if ($dummyuser !='') {  
   array_push($accounts,"$dummyuser");
-
+  }
 }
-/*
 
-$acct1 = readline('Username 1: ');
-$acct2 = readline('Username 2: ');
-//$acct3 = readline('Username 3: ');
-//$acct4 = readline('Username 4: ');
-*/
-
-//$accounts=array('jade_ashley01','jie_ferraris','joegie01','joegie01');
+array_push($accounts,"rene_wolverine");
 
 foreach ($dummyarray as $user) {
- //  $newpass=$passarray()
 
+  //Login to dummy account
     $urll = "https://identity.mylykaapps.com/useraccounts/login";
     $curll = curl_init($urll);
     curl_setopt($curll, CURLOPT_URL, $urll);
@@ -95,7 +84,7 @@ foreach ($dummyarray as $user) {
     curl_setopt($curll, CURLOPT_RETURNTRANSFER, true);
     $headerss = array("Content-Type: application/json", "user-agent:Lyka/3.6.21 (com.thingsilikeapp; build:821 Android O_MR1 28)");
     curl_setopt($curll, CURLOPT_HTTPHEADER, $headerss);
-    $dataa = <<<DATA
+    $DeviceInfo = <<<DATA
     {
     "countryCode": "US",
     "device": {
@@ -113,7 +102,7 @@ foreach ($dummyarray as $user) {
 }
 DATA;
 
-    curl_setopt($curll, CURLOPT_POSTFIELDS, $dataa);
+    curl_setopt($curll, CURLOPT_POSTFIELDS, $DeviceInfo);
     $respp = curl_exec($curll);
     curl_close($curll);
     $jsonn = json_decode($respp);
@@ -124,37 +113,36 @@ DATA;
     $json = json_decode($respp);   
 	
     if ($status == 0) {
-        echo "unable to login. incorrect password for $user";
-    }
-    echo "$Cyan";
-    echo "$user login successful
-    ";
+        echo "unable to login. incorrect password for $user\n";
+        echo "program will terminate.\n";  
+        exit 
+      }
+    echo "$Cyan\n";
+    echo "$user login successful\n";
+  
+    //End of Login to dummy account
 
+    //Get current balance of dummy
   $urlbal = "https://wallets.mylykaapps.com/api/v3/wallets/getgems?os=android";
   $curlbal = curl_init($urlbal);
   curl_setopt($curlbal, CURLOPT_URL, $urlbal);
-  curl_setopt($curlbal, CURLOPT_RETURNTRANSFER, true);   $headersbal = array("authorization: Bearer $bearer",);
+  curl_setopt($curlbal, CURLOPT_RETURNTRANSFER, true);   
+  $headersbal = array("authorization: Bearer $bearer",);
   curl_setopt($curlbal, CURLOPT_HTTPHEADER, $headersbal);
   $respbal = curl_exec($curlbal);
   curl_close($curlbal);
 
   $jsonbal = json_decode($respbal);
   $tg = $jsonbal->data->totalGem;
-  echo "Dummy balance : $tg GEMS   
-  ";
-  ///
-  ///
-  ///
-  ///
+  echo "$user balance : $tg GEMS\n";
+  echo "No balance will be transferred to any account.\n\n";
   //
   
   foreach($accounts as $mainacct) {
  //$acct1 - start of code  
-    echo "$Yellow"
-    echo "$mainacct is being rated
-	";
-    echo "
-    ";
+    echo "$White\n";
+    echo "trying to connect with $mainacct...\n\n";
+
     echo "$Cyan";
     
       if ($status == 1) {
@@ -172,6 +160,7 @@ DATA;
         $vvuser = $jsonm["data"]["0"]["userName"];
      }
   
+      //Found the username
     if ($mainacct == $vvuser) {
         $urld = "https://profiles.mylykaapps.com/api/v3/profiles/GetProfilePosts?os=android&pageIndex=1&pageSize=50&id=$uid&category=ALL";
         $curld = curl_init($urld);
@@ -184,25 +173,24 @@ DATA;
         $jsond = json_decode($respd, true);
   
         $arr = json_decode($respd, true);
-        $p00 = $arr["data"]["0"]["id"];
-        $p01 = $arr["data"]["1"]["id"];
-        $p02 = $arr["data"]["2"]["id"];
-        $p03 = $arr["data"]["3"]["id"];
-        $p04 = $arr["data"]["4"]["id"];
-        $p05 = $arr["data"]["5"]["id"];
-        $p06 = $arr["data"]["6"]["id"];
-        $p07 = $arr["data"]["7"]["id"];
-        $p08 = $arr["data"]["8"]["id"];
-        $p09 = $arr["data"]["9"]["id"];
-        $p10 = $arr["data"]["10"]["id"];
-
-
+        $p[1] = $arr["data"]["0"]["id"];
+        $p[2] = $arr["data"]["1"]["id"];
+        $p[3] = $arr["data"]["2"]["id"];
+        $p[4] = $arr["data"]["3"]["id"];
+        $p[5] = $arr["data"]["4"]["id"];
+        $p[6] = $arr["data"]["5"]["id"];
+        $p[7] = $arr["data"]["6"]["id"];
+        $p[8] = $arr["data"]["7"]["id"];
+        $p[9] = $arr["data"]["8"]["id"];
+        $p[10] = $arr["data"]["9"]["id"];
+        $p[11] = $arr["data"]["10"]["id"];
     }  
-  
+  echo $jsond->message; 
+  echo "\n\n";
     $stat = $arr["status"];
     //echo $stat;
     if ($stat == 0) {
-        echo "check your inputs";
+        echo "$mainacct does not have any post.\n\n";
     } elseif ($stat == 1) $Cyan= "\033[0;36m";
     echo "$Cyan";  
   
@@ -213,12 +201,11 @@ DATA;
     $headers = array("authorization:Bearer $bearer", "user-agent:Lyka/3.6.21 (com.thingsilikeapp; build:821 Android O_MR1 28))", "deviceos: android", "Content-Type: application/json",);
    
    
-//RATING acct1 POST 1    
-    echo "
-    ";
-    echo "Rating $mainacct post #1 - ";
-    echo "
-    ";
+//RATING posts
+
+ for ($postloop=1; $postloop<12; $postloop++) {   
+
+    echo "Post # $postloop \n";
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_POST, true);
@@ -236,7 +223,7 @@ DATA;
     "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
     "osVersion": "28"
     },
-    "postId": $p00,
+    "postId": $p[$postloop],
     "rate": 5,
     "userid": $uid
 }
@@ -246,401 +233,22 @@ DATA;
     curl_close($curl);
     //var_dump($resp);
     $json = json_decode($resp);
+    echo "$Yellow"; 
     echo $json->message; 
-    echo "                              
-    
-    ";
+    echo "$Cyan\n";
 
-//END OF RATING acct1 POST 1
-    
-//RATING acct1 POST 2   
-    echo "rating $mainacct post #2 - ";    
-    echo "
-    ";
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = <<<DATA
-	{
-    "device": {
-    "deviceId": "fcbe87b62342fbac",
-    "deviceImei": "fcbe87b62342fbac",
-    "deviceModel": "Tecno Spark 7 Pro",
-    "deviceName": "android",
-    "deviceOs": "Android O_MR1 ",
-    "isEmulator": false,
-    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-    "osVersion": "28"
-    },
-    "postId": $p01,
-    "rate": 5,
-    "userid": $uid
 }
-DATA;
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    //var_dump($resp);
-    $json = json_decode($resp);
-    echo $json->message; 
-    echo "
-    ";
-
-//END OF RATING acct1 POST 2   
-    
-//RATING acct1 POST 3    
-    echo "Rating $mainacct post #3 - ";    
-    echo "
-    ";
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = <<<DATA
-	{
-    "device": {
-    "deviceId": "fcbe87b62342fbac",
-    "deviceImei": "fcbe87b62342fbac",
-    "deviceModel": "Tecno Spark 7 Pro",
-    "deviceName": "android",
-    "deviceOs": "Android O_MR1 ",
-    "isEmulator": false,
-    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-    "osVersion": "28"
-    },
-    "postId": $p02,
-    "rate": 5,
-    "userid": $uid
-}
-DATA;
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    //var_dump($resp);
-    $json = json_decode($resp);
-    echo $json->message; 
-    echo "
-    ";
-
-//END OF RATING acct1 POST 3 
-      
-//RATING acct1 POST 4    
-    echo "Rating $mainacct post #4 - ";    
-    echo "
-    ";
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = <<<DATA
-	{
-    "device": {
-    "deviceId": "fcbe87b62342fbac",
-    "deviceImei": "fcbe87b62342fbac",
-    "deviceModel": "Tecno Spark 7 Pro",
-    "deviceName": "android",
-    "deviceOs": "Android O_MR1 ",
-    "isEmulator": false,
-    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-    "osVersion": "28"
-    },
-    "postId": $p03,
-    "rate": 5,
-    "userid": $uid
-}
-DATA;
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    //var_dump($resp);
-    $json = json_decode($resp);
-    echo $json->message; 
-    echo "
-    ";
-
-//END OF RATING POST 4
-    
-    
-    
-//RATING POST 5   
-    echo "Rating $mainacct post #5 - ";    
-    echo "
-    ";
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = <<<DATA
-	{
-    "device": {
-    "deviceId": "fcbe87b62342fbac",
-    "deviceImei": "fcbe87b62342fbac",
-    "deviceModel": "Tecno Spark 7 Pro",
-    "deviceName": "android",
-    "deviceOs": "Android O_MR1 ",
-    "isEmulator": false,
-    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-    "osVersion": "28"
-    },
-    "postId": $p04,
-    "rate": 5,
-    "userid": $uid
-}
-DATA;
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    //var_dump($resp);
-    $json = json_decode($resp);
-    echo $json->message; 
-    echo "
-    ";
-
-    //END OF RATING POST 5
-    
-        //RATING POST 6    
-    echo "Rating $mainacct post #6 - ";    
-    echo "
-    ";
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = <<<DATA
-	{
-    "device": {
-    "deviceId": "fcbe87b62342fbac",
-    "deviceImei": "fcbe87b62342fbac",
-    "deviceModel": "Tecno Spark 7 Pro",
-    "deviceName": "android",
-    "deviceOs": "Android O_MR1 ",
-    "isEmulator": false,
-    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-    "osVersion": "28"
-    },
-    "postId": $p05,
-    "rate": 5,
-    "userid": $uid
-}
-DATA;
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    //var_dump($resp);
-    $json = json_decode($resp);
-    echo $json->message; 
-    echo "
-    ";
-
-    //END OF RATING POST 6
-    
-        //RATING POST 7    
-    echo "Rating $mainacct post #7  - ";    
-    echo "
-    ";
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = <<<DATA
-	{
-    "device": {
-    "deviceId": "fcbe87b62342fbac",
-    "deviceImei": "fcbe87b62342fbac",
-    "deviceModel": "Tecno Spark 7 Pro",
-    "deviceName": "android",
-    "deviceOs": "Android O_MR1 ",
-    "isEmulator": false,
-    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-    "osVersion": "28"
-    },
-    "postId": $p06,
-    "rate": 5,
-    "userid": $uid
-}
-DATA;
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    //var_dump($resp);
-    $json = json_decode($resp);
-    echo $json->message; 
-    echo "
-    ";
-
-    //END OF RATING POST 7
-    
-        //RATING POST 8   
-    echo "Rating $mainacct post #8 - ";    
-    echo "
-    ";
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = <<<DATA
-	{
-    "device": {
-    "deviceId": "fcbe87b62342fbac",
-    "deviceImei": "fcbe87b62342fbac",
-    "deviceModel": "Tecno Spark 7 Pro",
-    "deviceName": "android",
-    "deviceOs": "Android O_MR1 ",
-    "isEmulator": false,
-    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-    "osVersion": "28"
-    },
-    "postId": $p07,
-    "rate": 5,
-    "userid": $uid
-}
-DATA;
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    //var_dump($resp);
-    $json = json_decode($resp);
-    echo $json->message; 
-    echo "
-    ";
-
-    //END OF RATING POST 8
-    
-        //RATING POST 9    
-    echo "Rating $mainacct post #9 - ";    
-    echo "
-    ";
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = <<<DATA
-	{
-    "device": {
-    "deviceId": "fcbe87b62342fbac",
-    "deviceImei": "fcbe87b62342fbac",
-    "deviceModel": "Tecno Spark 7 Pro",
-    "deviceName": "android",
-    "deviceOs": "Android O_MR1 ",
-    "isEmulator": false,
-    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-    "osVersion": "28"
-    },
-    "postId": $p08,
-    "rate": 5,
-    "userid": $uid
-}
-DATA;
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    //var_dump($resp);
-    $json = json_decode($resp);
-    echo $json->message; 
-    echo "
-    ";
-
-    //END OF RATING POST 9
-    
-        //RATING POST 10    
-    echo "Rating $mainacct post #10 - ";    
-    echo "
-    ";
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = <<<DATA
-	{
-    "device": {
-    "deviceId": "fcbe87b62342fbac",
-    "deviceImei": "fcbe87b62342fbac",
-    "deviceModel": "Tecno Spark 7 Pro",
-    "deviceName": "android",
-    "deviceOs": "Android O_MR1 ",
-    "isEmulator": false,
-    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-    "osVersion": "28"
-    },
-    "postId": $p09,
-    "rate": 5,
-    "userid": $uid
-}
-DATA;
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    //var_dump($resp);
-    $json = json_decode($resp);
-    echo $json->message; 
-    echo "
-    ";
-
-    //END OF RATING POST 10  
-    
-        //RATING POST 11   
-    echo "Rating $mainacct post #11 -  ";    
-    echo "
-    ";
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $data = <<<DATA
-	{
-    "device": {
-    "deviceId": "fcbe87b62342fbac",
-    "deviceImei": "fcbe87b62342fbac",
-    "deviceModel": "Tecno Spark 7 Pro",
-    "deviceName": "android",
-    "deviceOs": "Android O_MR1 ",
-    "isEmulator": false,
-    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
-    "osVersion": "28"
-    },
-    "postId": $p10,
-    "rate": 5,
-    "userid": $uid
-}
-DATA;
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($curl);
-    curl_close($curl);
-    //var_dump($resp);
-    $json = json_decode($resp);
-    echo $json->message; 
-
-    echo "
-    ";
-    //END OF RATING POST 11
-    
- //END OF ACCOUNT 1
-    
+//END OF RATING post
 }   //end of foreach $accounts
 
- 
+  //rene_wolverine uid = 700002814478
     //retrieve dummy balance
      
+  echo "$BWhite\n\n";
+  echo "Displaying $user updated balance\n\n";
 
-
-  echo "$BWhite";
-  echo "Retrieving dummy GEMS ";
-
-  
   echo "$Cyan";
-
-    
+   
     $urlbal2 = "https://wallets.mylykaapps.com/api/v3/wallets/getgems?os=android";
     $curlbal2 = curl_init($urlbal2);
     curl_setopt($curlbal2, CURLOPT_URL, $urlbal2);
@@ -655,11 +263,11 @@ DATA;
     //var_dump($respbal);
     $jsonbal2 = json_decode($respbal2);
     $tg2 = $jsonbal2->data->totalGem;
-    echo "
-DUMMY BALANCE $tg2 GEMS
-";
-
+    echo "New balance is $tg2 GEMS\n\n";
     
+    echo "No sending of GEMS to any account\n";
+    echo "Pls. perform manual sending if needed.\n";
+    /*    
     
     $urlbals = "https://wallets.mylykaapps.com/api/v3/wallets/SendGem";
     $curlbals = curl_init($urlbals);
@@ -675,24 +283,17 @@ DUMMY BALANCE $tg2 GEMS
 
     $jsonbals = json_decode($respbals);
     echo $jsonbals->message;
-    echo "    
-
-    ";
-    echo "   
-
-    ";
- 
-    
-    
-    echo "Duumy account GEMS transferred to main . $accounts[0] . : +$tg2 GEMS   ";  
+    echo "\n";
+    echo "$user GEMS transferred to . $accounts[0] . : +$tg2 GEMS   ";  
     echo "
     ";
-      
-    echo "$BWhite";
-    echo "aparri software  
-    
-    ";
- 
-    
 
-} //end of foreach
+    */
+
+
+     
+
+} //end of foreach dummy
+
+    echo "$BWhite";
+    echo "\nDone. Thank you!\n\n";
