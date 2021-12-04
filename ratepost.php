@@ -73,6 +73,7 @@ for ($x=0; $x < $NoofAcct ;$x++){
 }
 
 array_push($accounts,"rene_wolverine");
+echo "pls. wait while the program is setting up...\n\n\";
 
 foreach ($dummyarray as $user) {
 
@@ -112,10 +113,10 @@ DATA;
     $bearer = $jsonn->data->token->accessToken;
     $json = json_decode($respp);   
 	
-    if ($status == 0){ 
+    if ($status == 0) {
         echo "unable to login. incorrect password for $user\n";
         echo "program will terminate.\n";  
-        exit ;
+        exit; 
       }
     echo "$Cyan\n";
     echo "$user login successful\n";
@@ -141,7 +142,7 @@ DATA;
   foreach($accounts as $mainacct) {
  //$acct1 - start of code  
     echo "$White\n";
-    echo "trying to connect with $mainacct...\n\n";
+    echo "now searching the username $mainacct...\n\n";
 
     echo "$Cyan";
     
@@ -184,17 +185,8 @@ DATA;
         $p[9] = $arr["data"]["8"]["id"];
         $p[10] = $arr["data"]["9"]["id"];
         $p[11] = $arr["data"]["10"]["id"];
-    }  
-  echo $jsond->message; 
-  echo "\n\n";
-    $stat = $arr["status"];
-    //echo $stat;
-    if ($stat == 0) {
-        echo "$mainacct does not have any post.\n\n";
-    } elseif ($stat == 1) $Cyan= "\033[0;36m";
-    echo "$Cyan";  
-  
-     //LOOP TO ALL 11 POSTS
+
+             //LOOP TO ALL 11 POSTS
   
 
     $url = "https://posts.mylykaapps.com/api/v3/posts/ratepost";
@@ -237,10 +229,27 @@ DATA;
     echo $json->message; 
     echo "$Cyan\n";
 
-}
-//END OF RATING post
-}   //end of foreach $accounts
+} //end of for..loop
 
+} //end of mainacct==vvuser
+
+   
+
+
+     
+
+  echo $jsond->message; 
+  echo "\n\n";
+    $stat = $arr["status"];
+    //echo $stat;
+    if ($stat == 0) {
+        echo "$mainacct does not have any post.\n\n";
+    } elseif ($stat == 1) $Cyan= "\033[0;36m";
+    echo "$Cyan";  
+  
+  } //end of foreach $accounts
+
+  
   //rene_wolverine uid = 700002814478
     //retrieve dummy balance
      
@@ -290,10 +299,8 @@ DATA;
 
     */
 
-
-     
-
-} //end of foreach dummy
-
     echo "$BWhite";
     echo "\nDone. Thank you!\n\n";
+     
+
+} //end of foreach
