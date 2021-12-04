@@ -109,7 +109,7 @@ for ($postloop=1; $postloop<12; $postloop++) {
    $url   ='https://posting.mylykaapps.com/api/v3/posts/addpost';
    $curl = curl_init($url);
    curl_setopt($curl, CURLOPT_URL, $url);
-   curl_setopt($curl, CURLOPT_POST, true);
+   curl_setopt($curl, CURLOPT_POST, true)   ; 
    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);   
    curl_setopt($curl, CURLOPT_ENCODING, '');  
    curl_setopt($curl, CURLOPT_MAXREDIRS, 10);
@@ -118,7 +118,7 @@ for ($postloop=1; $postloop<12; $postloop++) {
    curl_setopt($curl,CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
    curl_setopt($curl, CURLOPT_POST, true);
-      $Var_Data <<< DATA
+      $Var_Data = <<<DATA
          {  "boundary" :"7e9c11fd-987e-4b4f-bf14-8a04ac8da26e", 
            "title" : "", 
            "content" : "", 
@@ -126,7 +126,7 @@ for ($postloop=1; $postloop<12; $postloop++) {
            "titleUrl" : "", 
            "descriptionUrl" : "", 
            "imageUrl" : "https://dh1u1gri6oel1.cloudfront.net/data/images/wishlists/500206482992/2021816/resized/dfe40ad5-c7a4-41a8-9086-d43c43d70f35.jpeg", 
-           "hashtags": "", 
+           "hashtags": "" , 
            "device": {
    "deviceId": "fcbe87b62342fbac",
    "deviceImei": "fcbe87b62342fbac",
