@@ -33,7 +33,7 @@ $White    =  "\033[0;37m" ;
 
 echo "$BWhite";
 echo "#LYKA\n";
-echo "Create a post\n\n";
+echo "Add post/moment\n\n";
 
 //init dummy array
 $dummyarray = []; 
@@ -42,13 +42,15 @@ $dummyarray = [];
 //$NoofDum = readline('No of dummies to use?: ');
 
 //loop to # of dummy account
-
+echo "$Cyan";
 //for ($x = 0;$x < $NoofDum;$x++) {
-   $Dummy = readline('Username to autopost: ');
-//   array_push($dummyarray, "$Dummy",);
+do {
+   $Dummy = readline('Input Username (or blank): ');
+   array_push($dummyarray, "$Dummy",);
 //   $pass = readline('dummy password:' );
 //   array_push($passarray,"$pass");
 //}
+} while ($Dummy !='');
 
 $pass=readline('Enter password: ');
 
@@ -56,8 +58,10 @@ echo "$Yellow\n";
 
 echo "pls. wait ...\n\n";
 
+foreach ($dummyarray as $user) {
+
 echo "$White\n";
-echo "connecting to username [$Dummy]...\n";
+echo "logging in [$user]...\n";
 
 echo "$Cyan";
 
@@ -84,7 +88,7 @@ $DeviceInfo = <<<DATA
 "osVersion": "28"
 },
 "password": "$pass",
-"username": "$Dummy"
+"username": "$user"
 }
 DATA;
 
@@ -98,7 +102,7 @@ $vuser = $jsonn->data->username;
 $bearer = $jsonn->data->token->accessToken;
 
 if ($status == 0) {
-  echo "$Dummy error logging in to your account.\n";
+  echo "$user error logging in to your account.\n";
   //echo "program will terminate.\n";  
   //exit; 
 }
@@ -106,24 +110,32 @@ if ($status == 0) {
 if ($status == 1) {
 
    echo "$Cyan\n";
-   echo "$Dummy login successful\n";
+   echo "$user login successful\n";
   
    //loop 11 times
 for ($postloop=1; $postloop<12; $postloop++) { 
-
-
-   sleep(1);
+   echo "$White";
+   echo "Adding post #$postloop to $vuser\n"; 
+   //sleep(1);
    $device_id = 'fcbe87b62342fbac';
+   echo "$Cyan";
    addPosts($vuser, $bearer, $device_id);
+   echo "$Yellow";
+   echo "Adding moment #$postloop to $vuser\n"; 
    addMoments($vuser, $bearer, $device_id);
 
 } //end of for loop
-echo "\nprogram exited\n";
+echo "$White";
+echo "\n\nAdd Post/Moments done.\n";
+echo "Thank you\n\n";
 
 } //end of status==1   
 
+} //end of loop for x username
+
+
 function addPosts($user, $bearer, $device_id) {
-   echo "\nAdding posts to $user \n";
+ //  echo "\nAdding posts to $user \n";
 
    $user_id = getUserId($device_id, $bearer);
    $device_id = $device_id;
@@ -311,7 +323,7 @@ function addMoments($user, $bearer, $device_id) {
 
    $user_id = getUserId($device_id, $bearer);
 
-   echo "\nAdding moments\n";
+//   echo "\nAdding moments\n";
 
    $uploadLegacy = "https://media.mylykaapps.com/api/v1/media/social/multi-upload-url";
    $uploadPay = <<<DATA
@@ -552,7 +564,7 @@ function payload($devIDx, $xtraPay, $rTokenx = ""){
            {"device": {
                "deviceId": "$devIDx",
                "deviceImei": "",
-               "deviceModel": "Tecno Spark 7 Pro",
+               "deviceModel": "Xiaomi Redmi Note 5",
                "deviceName": "android",
                "deviceOs": "Android R ",
                "isEmulator": false,
