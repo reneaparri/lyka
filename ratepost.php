@@ -73,7 +73,7 @@ for ($x=0; $x < $NoofAcct ;$x++){
 }
 
 array_push($accounts,"rene_wolverine");
-echo "pls. wait while the program is setting up...\n\n\";
+echo "pls. wait while the program is setting up...\n\n";
 
 foreach ($dummyarray as $user) {
 
