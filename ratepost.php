@@ -144,7 +144,7 @@ DATA;
     foreach($accounts as $mainacct) {
       
       echo "$White\n";
-      echo "now searching the username $mainacct...\n\n";
+      echo "connecting to username $mainacct...\n\n";
   
       echo "$Cyan";
   
@@ -194,7 +194,7 @@ DATA;
 
 for ($postloop=1; $postloop<12; $postloop++) {   
 
-  echo "Post # $postloop \n";
+  echo "Performing max rate to post # $postloop \n";
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_URL, $url);
   curl_setopt($curl, CURLOPT_POST, true);
@@ -226,14 +226,14 @@ DATA;
   echo $json->message; 
   echo "$Cyan\n";
 
-} //end of for..loop
+          } //end of for..loop
   
-         }  //end of mainacct=vvuser
-         $stat = $arr["status"];
-         echo "Stat - $stat";
-         if ($stat == 0) {
-             echo "$mainacct does not have any post.\n\n";
-         } 
+         } else echo "failed to connect to username $mainacct"; //end of mainacct=vvuser
+//         $stat = $arr["status"];
+//         echo "Stat - $stat";
+//         if ($stat == 0) {
+//             echo "$mainacct does not have any post.\n\n";
+     } 
          
          //elseif ($stat == 1) $Cyan= "\033[0;36m";
          //echo "$Cyan";  
@@ -301,3 +301,4 @@ DATA;
     echo "$BWhite";
     echo "\nDone. Thank you!\n\n";
      
+
