@@ -106,7 +106,7 @@ if ($status == 1) {
 //loop 11 times
 for ($postloop=1; $postloop<12; $postloop++) { 
 
-   $url   ='https://posting.mylykaapps.com/api/v3/posts/addpost'
+   $url   ='https://posting.mylykaapps.com/api/v3/posts/addpost';
    $curl = curl_init($url);
    curl_setopt($curl, CURLOPT_URL, $url);
    curl_setopt($curl, CURLOPT_POST, true)    
