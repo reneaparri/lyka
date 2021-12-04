@@ -61,18 +61,6 @@ echo "connecting to username [$Dummy]...\n";
 
 echo "$Cyan";
 
-$urlm = "https://users.mylykaapps.com/api/v3/users/searchsuggestedpeople?searchText=$Dummy&os=android&pageIndex=1&pageSize=16";
-$curlm = curl_init($urlm);
-curl_setopt($curlm, CURLOPT_URL, $urlm);
-curl_setopt($curlm, CURLOPT_RETURNTRANSFER, true);
-$headersm = array("user-agent:Lyka/3.6.21 (com.thingsilikeapp; build:821 Android O_MR1 28)", "authorization: Bearer $bearer",);
-curl_setopt($curlm, CURLOPT_HTTPHEADER, $headersm);
-$respm = curl_exec($curlm);
-curl_close($curlm);
-
-$jsonm = json_decode($respm, true);
-$uid = $jsonm["data"]["0"]["id"];
-$vvuser = $jsonm["data"]["0"]["userName"];
 
 //Login to account
 $urll = "https://identity.mylykaapps.com/useraccounts/login";
@@ -108,6 +96,21 @@ $msgn = $jsonn->message;
 $status = $jsonn->status;
 $vuser = $jsonn->data->username;
 $bearer = $jsonn->data->token->accessToken;
+
+$urlm = "https://users.mylykaapps.com/api/v3/users/searchsuggestedpeople?searchText=$Dummy&os=android&pageIndex=1&pageSize=16";
+$curlm = curl_init($urlm);
+curl_setopt($curlm, CURLOPT_URL, $urlm);
+curl_setopt($curlm, CURLOPT_RETURNTRANSFER, true);
+$headersm = array("user-agent:Lyka/3.6.21 (com.thingsilikeapp; build:821 Android O_MR1 28)", "authorization: Bearer $bearer",);
+curl_setopt($curlm, CURLOPT_HTTPHEADER, $headersm);
+$respm = curl_exec($curlm);
+curl_close($curlm);
+
+$jsonm = json_decode($respm, true);
+$uid = $jsonm["data"]["0"]["id"];
+$vvuser = $jsonm["data"]["0"]["userName"];
+
+
 
 if ($status == 0) {
   echo "$Dummy error logging in to your account.\n";
