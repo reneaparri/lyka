@@ -109,7 +109,7 @@ for ($postloop=1; $postloop<12; $postloop++) {
    $url   ='https://posting.mylykaapps.com/api/v3/posts/addpost';
    $curl = curl_init($url);
    curl_setopt($curl, CURLOPT_URL, $url);
-   curl_setopt($curl, CURLOPT_POST, true)    
+   curl_setopt($curl, CURLOPT_POST, true);
    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);   
    curl_setopt($curl, CURLOPT_ENCODING, '');  
    curl_setopt($curl, CURLOPT_MAXREDIRS, 10);
