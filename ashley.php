@@ -116,7 +116,8 @@ array_push($ratersaccount,"vinice5233");
 array_push($ratersaccount,"vee8571");
 array_push($ratersaccount,"nell3143");
 array_push($ratersaccount,"may8783");
-
+array_push($ratersaccount,"bert8818");
+array_push($ratersaccount,"girl8813");    
 
 $ScriptName ="LYKA {add post/moment, rate post, etc.}";
 $Web="(c) rene g aparri";
