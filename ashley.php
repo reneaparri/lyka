@@ -1142,20 +1142,20 @@ echo "$White\n-----------------------------\n";
         addpost2account($ratersaccount,$mainaccounts,"$posttype","main"); 
         echo "\n\n";
     //    exit;
-        addpostmomentMenu($posttype, $ratersaccount, $mainaccounts)
+        addpostmomentMenu($posttype, $ratersaccount, $mainaccounts);
       case "2" : //post to raters
      
         $mainaccounts=[];        
         addpost2account($ratersaccount,$mainaccounts,"$posttype","raters");
         echo "\n\n";
         //exit;
-         addpostmomentMenu($posttype, $ratersaccount, $mainaccounts)
+         addpostmomentMenu($posttype, $ratersaccount, $mainaccounts);
   
      case "3" : //post to other 
     
        addpost2account($ratersaccount,$mainaccounts,"$posttype","other");
        echo "\n\n";
-       addpostmomentMenu($posttype, $ratersaccount, $mainaccounts)
+       addpostmomentMenu($posttype, $ratersaccount, $mainaccounts);
            //exit;
 
     case "4" :
