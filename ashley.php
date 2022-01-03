@@ -224,17 +224,17 @@ echo "$White\n-----------------------------\n$Yellow";
         
         checkmaxgems($mainaccounts, "main"); 
         echo "\n\n";
-        mainmenu();      
+        checkgemsmenu($ratersaccount, $mainaccounts);      
       case "2" : //raters
        
         checkmaxgems($ratersaccount, "raters"); 
         echo "\n\n";
-        mainmenu();      
+        checkgemsmenu($ratersaccount, $mainaccounts);      
     case "3" : //other accounts
        
         checkmaxgems($ratersaccount, "other"); 
         echo "\n\n";
-        mainmenu();      
+        checkgemsmenu($ratersaccount, $mainaccounts);      
           
     case "4" :
        @system("clear");
@@ -242,7 +242,7 @@ echo "$White\n-----------------------------\n$Yellow";
 
     default :
        @system("clear");
-       mainmenu();   
+       checkgemsmenu($ratersaccount, $mainaccounts);   
    }     
 return;
 
@@ -409,22 +409,19 @@ echo "$White\n-----------------------------\n";
 
    switch($inputtask) {
       case "1" : //raters
-        
         harvestmaxgems($ratersaccount, $mainaccounts, "raters"); 
-        echo "\n\n";
-        mainmenu();      
+      echo "\n\n";
+        harvestgemsmenu($ratersaccount, $mainaccounts);      
       case "2" : //other
-                harvestmaxgems("",  $mainaccounts, "other"); 
-        echo "\n\n";
-        mainmenu();      
-      
+        harvestmaxgems("",  $mainaccounts, "other"); 
+      echo "\n\n";
+        harvestgemsmenu($ratersaccount, $mainaccounts);      
       case "3" :
        @system("clear");
        mainmenu();   
-
       default :
        @system("clear");
-       mainmenu();   
+       harvestgemsmenu($ratersaccount, $mainaccounts);   
    }     
 return;
 
@@ -683,30 +680,30 @@ echo "$White\n-----------------------------\n";
     case "1" : //main to main
         max2max($mainaccounts,$mainaccounts);
         echo "\n\n";
-        mainmenu();
+        ratepostmenu($ratersaccount, $mainaccounts);
 
     case "2" : //raters to main
         max2max($ratersaccount,$mainaccounts);
         echo "\n\n";
-        mainmenu();        
+        ratepostmenu($ratersaccount, $mainaccounts);        
 
     case "3" : //raters to other
         max2u($ratersaccount);     
         echo "\n\n";
-        mainmenu();        
+        ratepostmenu($ratersaccount, $mainaccounts);        
 
     case "4" : //other to other
         other2other();     
         echo "\n\n";
-        mainmenu();        
+        ratepostmenu($ratersaccount, $mainaccounts);        
     
-    case "5" : //other
+    case "5" : //return
         @system("clear");
         mainmenu();        
             
     default :
        @system("clear");
-       mainmenu();   
+       ratepostmenu($ratersaccount, $mainaccounts);   
    }     
 return;
 
@@ -1144,28 +1141,30 @@ echo "$White\n-----------------------------\n";
         $ratersaccount=[];
         addpost2account($ratersaccount,$mainaccounts,"$posttype","main"); 
         echo "\n\n";
-        exit;
-      
+    //    exit;
+        addpostmomentMenu($posttype, $ratersaccount, $mainaccounts)
       case "2" : //post to raters
      
         $mainaccounts=[];        
         addpost2account($ratersaccount,$mainaccounts,"$posttype","raters");
         echo "\n\n";
-        exit;
-      
-      case "3" : //post to other 
+        //exit;
+         addpostmomentMenu($posttype, $ratersaccount, $mainaccounts)
+  
+     case "3" : //post to other 
     
        addpost2account($ratersaccount,$mainaccounts,"$posttype","other");
        echo "\n\n";
-       exit;
+       addpostmomentMenu($posttype, $ratersaccount, $mainaccounts)
+           //exit;
 
-      case "4" :
+    case "4" :
        @system("clear");
        mainmenu();   
 
-      default :
+    default :
        @system("clear");
-       mainmenu();   
+       addpostmomentMenu($posttype, $ratersaccount, $mainaccounts);   
    }     
 return;
 }
