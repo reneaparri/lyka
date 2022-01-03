@@ -1,4 +1,6 @@
 <?PHP
+//"LYKA {add post/moment, rate post, etc.}"
+//copyright renegaparri. all rights reserved 2022
 
 @system("clear");
 
