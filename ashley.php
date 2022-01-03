@@ -24,20 +24,6 @@ $White    = "\033[0;37m" ;       # White
 $Green    = "\033[0;32m" ;       # Green
 $Yellow   = "\033[0;33m" ;      # Yellow
 
-$hash_tags =array("lykaglobal","lykaglobalph","lykagems","Travel", "SpreadLove",
-"StayBlessed","Goodluck","LYKAGlobal","LYKAEmpoweringLykans","TravelThainow2019",
-"WeRiseByLiftingOthers","LykaMall","LykaGems","LykaPH","Vivalasvegas",    
-"LykaGlobal","LykaShare","LykaWorld","MaxRate","LykaRetail",
-"StayBlessed","Goodluck","LYKAGlobal","LYKAEmpoweringLykans","TravelThainow2019",
-"WeRiseByLiftingOthers","LykaMall","LykaGems","LykaPH","Vivalasvegas",    
-"LykaGlobal","travelthainow2019","LykaUltraRater","LykaMerchants","travelthainow2019",
-"lykaglobal","lykaglobalph","lykagems","Travel", "SpreadLove",
-"StayBlessed","Goodluck","LYKAGlobal","LYKAEmpoweringLykans","TravelThainow2019",
-"LykaGlobal","LykaMall","LykaUltraRater","LykaMerchants","travelthainow2019",
-"lykaglobal","lykaglobalph","lykagems","Travel", "SpreadLove",
-"WeRiseByLiftingOthers","LykaMall","LykaGems","LykaPH","Vivalasvegas");
-
-
 $mainaccounts=[];
 $ratersaccount=[];
 
@@ -47,7 +33,7 @@ array_push($mainaccounts,"joegie01");
 array_push($mainaccounts,"liela0520");
 array_push($mainaccounts,"radrian2005");
 
-
+//these are the raters account
 array_push($ratersaccount,"gem5299");
 array_push($ratersaccount,"marj8619");
 array_push($ratersaccount,"kitt5121");
@@ -129,9 +115,9 @@ array_push($ratersaccount,"germ2951");
 array_push($ratersaccount,"benz5318");    
 array_push($ratersaccount,"myla7001");    
     
-       
+//define title       
 $ScriptName ="LYKA {add post/moment, rate post, etc.}";
-$Web="(c) rene g aparri [build 1.3.22]";
+$Web="(c) renegaparri [build 1.3.22]";
 
 
 echo "$White";
@@ -205,7 +191,7 @@ function checkgemsmenu($ratersaccount, $mainaccounts)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-$ScriptName ="CHECK LYKA GEMS\n(c) reneaparri 2022";
+$ScriptName ="CHECK LYKA GEMS\n(c) renegaparri [build 1.3.22]";
 $Web="https://github.com/reneaparri/lyka";
 
 echo "$White";
@@ -264,7 +250,7 @@ return;
    $Green    = "\033[0;32m" ;       # Green
    $Yellow   = "\033[0;33m" ;      # Yellow
    
-   $ScriptName ="CHECK LYKA GEMS\n(c) reneaparri 2022";
+   $ScriptName ="CHECK LYKA GEMS\n(c) renegaparri [build 1.3.22]";
    $Web="https://github.com/reneaparri/lyka";
 
    echo "$White";
@@ -394,7 +380,7 @@ function harvestgemsmenu($ratersaccount, $mainaccounts)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-$ScriptName ="HARVEST LYKA GEMS\n(c) reneaparri 2022";
+$ScriptName ="HARVEST LYKA GEMS\n(c) renegaparri [build 1.3.22]";
 $Web="https://github.com/reneaparri/lyka";
 
 echo "$White";
@@ -438,7 +424,7 @@ return;
    $Green    = "\033[0;32m" ;       # Green
    $Yellow   = "\033[0;33m" ;      # Yellow
 
-       $ScriptName ="HARVEST LYKA GEMS\n(c) reneaparri 2022";
+       $ScriptName ="HARVEST LYKA GEMS\n(c) renegaparri [build 1.3.22]";
        $Web="https://github.com/reneaparri/lyka";
 
        echo "$White";
@@ -661,7 +647,7 @@ function ratepostmenu($ratersaccount, $mainaccounts)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-$ScriptName ="RATE POSTS\n(c) reneaparri 2022";
+$ScriptName ="RATE POSTS\n(c) renegaparri [build 1.3.22]";
 $Web="https://github.com/reneaparri/lyka";
 
 echo "$White";
@@ -727,7 +713,7 @@ function max2max($raters,$acct2rate)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
     
-    $ScriptName ="main <> main | raters <> main";
+    $ScriptName ="main <> main | raters <> main\n(c) renegaparri [build 1.3.22]";
     $Web="https://github.com/reneaparri/lyka";
 
     echo "$White";
@@ -764,7 +750,7 @@ function max2u($raters)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-    $ScriptName ="RATERS to max-rate your account";
+    $ScriptName ="RATERS to max-rate your account\n(c) renegaparri [build 1.3.22]";
     $Web="https://github.com/reneaparri/lyka";
 
     echo "$White";
@@ -818,7 +804,7 @@ function other2other()
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
     
-    $ScriptName ="Other 2 Other Account \n(c) reneaparri 2022";
+    $ScriptName ="Other 2 Other Account \n(c) renegaparri [build 1.3.22]";
     $Web="https://github.com/reneaparri/lyka"; 
 
 echo "$White";
@@ -1121,7 +1107,7 @@ function addpostmomentMenu($posttype, $ratersaccount, $mainaccounts)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-$ScriptName ="ADD POST/MOMENTS ROUTINE\n(c) reneaparri 2022";
+$ScriptName ="ADD POST/MOMENTS ROUTINE\n(c) renegaparri [build 1.3.22]";
 $Web="https://github.com/reneaparri/lyka";
 
 echo "$White";
@@ -1187,7 +1173,7 @@ function addpost2account($ratersaccount, $mainaccounts, $posttype, $accounttype)
    $Cyan     = "\033[0;36m" ;        # Cyan
    $White    = "\033[0;37m" ;       # White
    
-   $ScriptName ="ADD POST/MOMENT ROUTINE\n(c) reneaparri 2022";
+   $ScriptName ="ADD POST/MOMENT ROUTINE\n(c) renegaparri [build 1.3.22]";
    $Web="https://github.com/reneaparri/lyka";
    
    $acct=0;
