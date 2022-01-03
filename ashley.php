@@ -119,8 +119,17 @@ array_push($ratersaccount,"may8783");
 array_push($ratersaccount,"bert8818");
 array_push($ratersaccount,"girl8813");    
 
+array_push($ratersaccount,"bianca0353");    
+array_push($ratersaccount,"jenny3176");    
+array_push($ratersaccount,"nica3162");    
+array_push($ratersaccount,"hanny8881");    
+array_push($ratersaccount,"germ2951");    
+array_push($ratersaccount,"benz5318");    
+array_push($ratersaccount,"myla7001");    
+    
+       
 $ScriptName ="LYKA {add post/moment, rate post, etc.}";
-$Web="(c) rene g aparri";
+$Web="(c) rene g aparri [build 1.3.22]";
 
 
 echo "$White";
