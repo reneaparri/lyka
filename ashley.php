@@ -29,10 +29,10 @@ $ratersaccount=[];
 array_push($mainaccounts,"jadeashley01");
 array_push($mainaccounts,"jade_ashley01");
 array_push($mainaccounts,"joegie01");
-array_push($mainaccounts,"liela0520");
 array_push($mainaccounts,"radrian2005");
 
 //these are the raters account
+array_push($ratersaccount,"liela0520");
 array_push($ratersaccount,"gem5299");
 array_push($ratersaccount,"marj8619");
 array_push($ratersaccount,"kitt5121");
@@ -113,6 +113,10 @@ array_push($ratersaccount,"hanny8881");
 array_push($ratersaccount,"germ2951");    
 array_push($ratersaccount,"benz5318");    
 array_push($ratersaccount,"myla7001");    
+
+array_push($ratersaccount,"tedd5067");
+array_push($ratersaccount,"xette5325");
+array_push($ratersaccount,"zen5245");
     
 //define title       
 $ScriptName ="LYKA {add post/moment, rate post, etc.}";
@@ -375,11 +379,11 @@ function checkgems($maxaccounts,$mainpassword)
      
      //end of user logged in
    
-    } else { print "\nLYKA server down";}
+    } else { print "\nLYKA server down"; break;}
 
     } //end of loop for each account
    
-     printf("$White%'-40s\n","");
+     printf("\n$White%'-40s\n","");
      printf("%17s GEMS >$Yellow %.2f\n","Total",$total);
 
      print("$White\n\n");
@@ -561,7 +565,8 @@ return;
 
        $jsonn =logintoaccount($activeaccount, $mainpassword);
        
-       
+       if ($jsonn != NULL)
+       {
        if ($jsonn->message != "Invalid username/password")
        	{ 
 				
@@ -617,9 +622,23 @@ return;
      		curl_close($curlGEMS);
 
 			$jsonGEM = json_decode($response_GEMbalance);
+			
+			//var_dump($jsonGEM);
+			//break;
+            $msgs = "sent";
+            
+            if ($jsonGEM->message == "Cannot send 0.00 LYKA GEMs.")
+             {  
+               $msgs="no GEMs to send";
+             }
+
+            if ($jsonGEM->message == "Insufficient balance.")
+             {  
+               $msgs="check account";
+             }
                
             print "$White";
-            printf("%2s) %-19s $Green %.2f >$Cyan sent\n",$xcount,$activeaccount,$TotalGEMS);
+            printf("%2s) %-19s $Green %.2f >$Cyan %s\n",$xcount,$activeaccount,$TotalGEMS,$msgs);
             $harvestedgems =$harvestedgems+$TotalGEMS;
 
             } else {
@@ -633,7 +652,7 @@ return;
            	printf("%2s) %-19s >$Green %s\n",$xcount,$activeaccount,$jsonn->message);
        	    
        	    } //!="Invalid username
-
+            }
        		usleep(100000);
        			
        		} while ($xcount !=count($maxaccounts)); //end of loop for each acct
@@ -995,7 +1014,9 @@ $rated++;
 
     #login to raters
     $jsonn = logintoaccount($currentRater,$mainpassword);
-
+    
+    if ($jsonn != NULL)
+    {
     if ($jsonn->message == "User logged in") :
 
     $msgn = $jsonn->message;
@@ -1103,7 +1124,7 @@ $rated++;
                         
                             $timetosleep=1;
                         if (strstr($postmessage,'Congratulations')) {
-                            print "rated over 10 posts \n";
+                            print "rated 10+ posts \n";
                            // var_dump($json);
                         } elseif ($postmessage=="You already have rated this post.")
                         {
@@ -1137,7 +1158,7 @@ $rated++;
                         $xcount++;
 
                         if ($timetosleep != 10)
-                        { usleep(100000);}
+                        { usleep(300000);}
                         else { sleep($timetosleep); }
     
                     } while ($PostNum !=10);
@@ -1167,6 +1188,7 @@ $rated++;
 
 
     sleep(2);
+    }
     
     endforeach;
     
@@ -1363,7 +1385,8 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
     //Login to account
     $jsonn = logintoaccount($currentUser,$mainpassword);
     
-    
+    if ($jsonn != NULL)
+    {    
     if ($jsonn->message != "Invalid username/password") :
  
     print "$White\n";
@@ -1419,12 +1442,13 @@ else :
     break;    
 endif;
 
+     
     print "\n$White";
     print "--------------------------------\n";
     usleep(100000);
     
     } //end of loop for x username
-    
+    }
     if ($jsonn->message != "Invalid username/password")
     {
     print "$White\n";
@@ -1628,7 +1652,7 @@ function postmoments($currentUser, $bearer, $posttype, $accounttype) {
                     "mediaTags":"[[]]",
                     title:"#ActiveLYKA'.date("l").'",
                     hashtags:"#LYKA GEMS",
-                    content: "https://github.com/reneaparri/lyka"'),
+                    content: "#"'),
                     $bearer);
 
                 else : 
