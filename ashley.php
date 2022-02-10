@@ -1,6 +1,6 @@
 <?PHP
-//"LYKA {add post/moment, rate post, etc.}"
-//copyright renegaparri. all rights reserved 2022
+$Webs = "https://github.com/reneaparri/lyka\n\n";
+$Script = "LYKA {add post/moment, rate post, etc.}\n© 2022 Rene Aparri. 2.10.2022\n";
 
 @system("clear");
 
@@ -15,17 +15,18 @@ function mainmenu(){
     @system("clear");
 
     // Regular Colors
-$Black    = "\033[0;30m" ;      # Black
-$CRed     = "\033[0;31m" ;      # Red
-$Blue     = "\033[0;34m" ;      # Blue
-$Cyan     = "\033[0;36m" ;      # Cyan
-$White    = "\033[0;37m" ;      # White
-$Green    = "\033[0;32m" ;      # Green
-$Yellow   = "\033[0;33m" ;      # Yellow
+$Black    = "\033[0;30m" ;     //  # Black
+$CRed     = "\033[0;31m" ;     //  # Red
+$Blue     = "\033[0;34m" ;         # Blue
+$Cyan     = "\033[0;36m" ;         # Cyan
+$White    = "\033[0;37m" ;         # White
+$Green    = "\033[0;32m" ;         # Green
+$Yellow   = "\033[0;33m" ;         # Yellow
 
 $mainaccounts=[];
 $ratersaccount=[];
 
+#my accounts
 array_push($mainaccounts,"jadeashley01");
 array_push($mainaccounts,"jade_ashley01");
 array_push($mainaccounts,"joegie01");
@@ -118,24 +119,22 @@ array_push($ratersaccount,"tedd5067");
 array_push($ratersaccount,"xette5325");
 array_push($ratersaccount,"zen5245");
     
-//define title       
-$ScriptName ="LYKA {add post/moment, rate post, etc.}";
-$Web="https://github.com/reneaparri/lyka";
 
 
 print "$White";
-print "$ScriptName\n";
-print "$Web\n\n";
+//print "$ScriptName\n";
+print $GLOBALS['Script'];
+print $GLOBALS['Webs'];
     
 print "$White\nMAIN MENU";
 print "$White\n-----------------------------";
 
-print "$White\na )$Yellow add posts";
-print "$White\nb )$Yellow add moments";
-print "$White\nc )$Yellow rate posts";
-print "$White\nd )$Yellow check gems";
-print "$White\ne )$Yellow harvest gems";
-print "$White\nf )$Yellow exit menu";
+print "$White\na )$Green add posts";
+print "$White\nb )$Green add moments";
+print "$White\nc )$Green posts rating";
+print "$White\nd )$Green check accounts";
+print "$White\ne )$Green harvest gems";
+print "$White\nf )$Green exit menu";
 print "$White\n-----------------------------\n$Yellow";
 
    print "Your selection > ";
@@ -199,18 +198,17 @@ function checkgemsmenu($ratersaccount, $mainaccounts)
     $Green    = "\033[0;32m" ;      # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-$ScriptName ="CHECK LYKA GEMS\n© aparri software development 2022";
-$Web="https://github.com/reneaparri/lyka";
+$ScriptName ="CHECK ACCOUNTS\n© 2022 Rene Aparri";
 
 print "$White";
 print "$ScriptName\n";
-print "$Web\n\n";
-print "\nCHECK GEMS Menu\n";
+print $GLOBALS['Webs'];
+print "\nMenu\n";
 print "-----------------------------";
-print "$White\na )$Yellow main accounts";
-print "$White\nb )$Yellow raters accounts";
-print "$White\nc )$Yellow other account";
-print "$White\nd )$Yellow back to main";
+print "$White\na )$Green main accounts";
+print "$White\nb )$Green raters accounts";
+print "$White\nc )$Green friends account";
+print "$White\nd )$Green back to main";
 print "$White\n-----------------------------\n$Yellow";
 
    print "Your selection > ";
@@ -227,9 +225,9 @@ print "$White\n-----------------------------\n$Yellow";
         checkmaxgems($ratersaccount, "raters"); 
         print "\n\n";
         mainmenu();      
-    case "c" : //other accounts
+    case "c" : //friends accounts
        
-        checkmaxgems($ratersaccount, "other"); 
+        checkmaxgems($ratersaccount, "friends"); 
         print "\n\n";
         mainmenu();      
           
@@ -253,27 +251,27 @@ return;
   //SUB ROUTINE
   function checkmaxgems($accounts, $accounttype)
   {
-    @system("clear");
+   @system("clear");
    $Cyan     = "\033[0;36m" ;       # Cyan
    $White    = "\033[0;37m" ;       # White
    $Green    = "\033[0;32m" ;       # Green
    $Yellow   = "\033[0;33m" ;       # Yellow
    
-   $ScriptName ="CHECK LYKA GEMS\n© aparri software development 2022";
-   $Web="https://github.com/reneaparri/lyka";
+   $ScriptName ="CHECK ACCOUNTS\n© 2022 Rene Aparri";
+  
 
    print "$White";
    print "$ScriptName\n";
-   print "$Web\n\n";
+   print $GLOBALS['Webs'];
    print "How many GEMS do you have?\n";
   
       $maxaccounts=[];
          
-   if($accounttype == "other")
+   if($accounttype == "friends")
    {
     $acct=0;
     print "$Yellow\n";
-    print "Account username to check GEMS\n";
+    print "Account username to check\n";
     print "press enter when done\n$Green\n";
     do {
         $inputusername = readline("Username : ");
@@ -288,6 +286,9 @@ return;
         print "$Yellow";
         print "> pls. enter atleast one (1) username\n\n";
             mainmenu(); 
+    } else {
+        $start=0;
+        $end=count($maxaccounts)-1;
     }
 
    } else
@@ -300,12 +301,7 @@ return;
         print "$Cyan\nStart [$accounts[$start]]";
         print "$Cyan\nEnd   [$accounts[$end]]\n";
 
-          $x=$start;
-        do {
-            array_push($maxaccounts,$accounts[$x]);
-                $x++;
-        } while ($x != $end+1);
-       
+    $maxaccounts=$accounts;     
 
    }
 
@@ -317,25 +313,20 @@ return;
        print "$Yellow\n**empty password**\n";
        mainmenu();    
    }
-   
-//   if ($accounttype != "other")
-//   {
-//   $maxaccounts = $accounts; 
-//   }
 
    @system("clear");
    print "$White\n";
    print "$ScriptName\n";
-   print "$Web\n$Yellow\n";
-   print "let's check your GEMS...\n\n";
+   print $GLOBALS['Webs'];
+   print "$Yellow\nlet's check your accounts...\n\n";
    sleep(1);
 
-   checkgems($maxaccounts, $mainpassword);
+   checkgems($maxaccounts, $start, $end, $mainpassword);
    return;
 }
 // AN OOP we can use anywhere
 
-function checkgems($maxaccounts,$mainpassword)
+function checkgems($maxaccounts, $start, $end, $mainpassword)
 {
    $Cyan     = "\033[0;36m" ;      # Cyan
    $White    = "\033[0;37m" ;      # White
@@ -347,14 +338,17 @@ function checkgems($maxaccounts,$mainpassword)
    printf("%-2s. %-20s GEMS\n","No","Account Name");
    printf("$White%'-40s\n","");
 
-   $xcount=0;
-   foreach ($maxaccounts as $activeaccount) {
-   $xcount++; 
+   $xcount=$start;
    
+   do {
+   
+       $activeaccount=$maxaccounts[$xcount];
        #Login to each account
 
-        $jsonn=logintoaccount($activeaccount,$mainpassword);       
-
+       $jsonn=logintoaccount($activeaccount,$mainpassword);       
+       
+       $xcount++;
+               
        if ($jsonn != NULL) {
 
        $msgn = $jsonn->message;
@@ -364,7 +358,6 @@ function checkgems($maxaccounts,$mainpassword)
        $status = $jsonn->status;
        $vuser = $jsonn->data->username;
        $bearer = $jsonn->data->token->accessToken;
-       //$json = json_decode($respp);  
 
        $TotalGEMS = getgembalance($bearer);
        
@@ -377,13 +370,14 @@ function checkgems($maxaccounts,$mainpassword)
         printf("%2s) %-15s >$Green $-25s\n",$xcount,$activeaccount,$msgn);
         } 
      
-     //end of user logged in
-   
-    } else { print "\nLYKA server down"; break;}
+       } else { print "\nLYKA server down\n";}
+      //end of user logged in
 
-    } //end of loop for each account
-   
-     printf("\n$White%'-40s\n","");
+   } while ($xcount != $end+1);
+  //  } //end of loop for each account
+  
+  
+     printf("$White%'-40s\n","");
      printf("%17s GEMS >$Yellow %.2f\n","Total",$total);
 
      print("$White\n\n");
@@ -408,17 +402,17 @@ function harvestgemsmenu($accounts, $mainaccounts)
     $Green    = "\033[0;32m" ;      # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-$ScriptName ="HARVEST LYKA GEMS\n© aparri software development 2022";
-$Web="https://github.com/reneaparri/lyka";
+$ScriptName ="HARVEST GEMS\n© 2022 Rene Aparri";
+
 
 print "$White";
 print "$ScriptName\n";
-print "$Web\n\n";
-print "\nHARVEST GEMS Menu\n";
+print $GLOBALS['Webs'];
+print "\nMenu\n";
 print "-----------------------------";
-print "$White\na )$Yellow from raters accounts";
-print "$White\nb )$Yellow from other accounts";
-print "$White\nc )$Yellow back to main";
+print "$White\na )$Green raters accounts";
+print "$White\nb )$Green friends accounts";
+print "$White\nc )$Green back to main";
 print "$White\n-----------------------------\n";
 
    print "Your selection > ";
@@ -430,8 +424,8 @@ print "$White\n-----------------------------\n";
         harvestmaxgems($accounts, $mainaccounts, "raters"); 
         print "\n\n";
         mainmenu();      
-      case "b" : //other
-        harvestmaxgems("", $mainaccounts, "other"); 
+      case "b" : //friends
+        harvestmaxgems("", $mainaccounts, "friends"); 
         print "\n\n";
         mainmenu();      
       
@@ -439,15 +433,15 @@ print "$White\n-----------------------------\n";
        @system("clear");
        mainmenu();   
 
-      default :
-       @system("clear");
-       mainmenu();   
+     // default :
+     //  @system("clear");
+     //  mainmenu();   
    }     
 return;
 
 }
 
-  function harvestmaxgems($accounts, $mainaccounts, $accounttype)
+function harvestmaxgems($accounts, $mainaccounts, $accounttype)
   {
    @system("clear");
    $Cyan     = "\033[0;36m" ;      # Cyan
@@ -455,21 +449,21 @@ return;
    $Green    = "\033[0;32m" ;      # Green
    $Yellow   = "\033[0;33m" ;      # Yellow
 
-       $ScriptName ="HARVEST LYKA GEMS\n© aparri software development 2022";
-       $Web="https://github.com/reneaparri/lyka";
+       $ScriptName ="HARVEST LYKA GEMs\n© 2022 Rene Aparri";
+       
 
        print "$White";
        print "$ScriptName\n";
-       print "$Web\n\n";
-       print "Let's harvest max GEMS\n";
+       print $GLOBALS['Webs'];
+       print "Let's harvest your GEMS\n";
 
               $maxaccounts=[];
 
-       if($accounttype == "other")
+       if($accounttype == "friends")
        {
         $acct=0;
         print "$Yellow\n";
-        print "Input username to harvest GEMS from\n";
+        print "Input friends account to harvest GEMS from\n";
         print "press enter when done\n$Green\n";
         do {
             $inputusername = readline("Username : ");
@@ -482,7 +476,7 @@ return;
         if ($acct == 0)
         {
             print "$Yellow";
-            print "> pls. enter atleast one (1) username\n\n";
+            print "*pls. enter atleast one (1) username\n\n";
                 mainmenu(); 
         }
     
@@ -499,12 +493,7 @@ return;
         print "$Cyan\nStart [$accounts[$start]]";
         print "$Cyan\nEnd   [$accounts[$end]]\n";
 
-          $x=$start;
-        do {
-            array_push($maxaccounts,$accounts[$x]);
-                $x++;
-        } while ($x != $end+1);
-       
+         $maxaccounts=$accounts;
        }
    
        print "$Yellow\n";
@@ -512,17 +501,13 @@ return;
        $mainpassword=readline('Password : ');
        if ($mainpassword == '')
        {
-           print "$Yellow\n**empty password**\n\n";
+           print "$Yellow\n*empty password\n\n";
            mainmenu();    
        }
        
        //get the account where the harvested gems will be sent
 
-       print "\nInput LYKA GEMS recipient\n";
-//       foreach ($mainaccounts as $targetrecipient)
-//       {
-//         print "Main account -> [$targetrecipient]\n";
-//       }
+       print "\nInput GEMs recipient\n";
              
        print "[Default = $mainaccounts[0]]\n$White\n";
     
@@ -533,14 +518,13 @@ return;
            $GEMReceiver=$mainaccounts[0];
        }
 
-
        @system("clear");
        print "$White\n";
        print "$ScriptName\n";
-       print "$Web\n$Yellow\n";
-       print "we are good to go,\n";
+       print $GLOBALS['Webs'];
+       print "$Yellow\nwe are good to go,\n";
        print "let's harvest your GEMS...\n$White\n";
-       sleep(2);
+       usleep(200000);
        
        $harvestedgems=0;
 
@@ -550,14 +534,12 @@ return;
        printf("%-2s. %-20s GEMS   Status\n","No","Account Name");
        printf("$White%'-40s\n","");
 				
-       $xcount=0;
+       $xcount=$start;
        
-//       print count($maxaccounts);
        
        do {
-       //foreach ($maxaccounts as $activeaccount) {
 			
-			$activeaccount=$maxaccounts[$xcount];	
+       $activeaccount=$maxaccounts[$xcount];	
                
        $xcount++; 
 
@@ -565,8 +547,7 @@ return;
 
        $jsonn =logintoaccount($activeaccount, $mainpassword);
        
-       if ($jsonn != NULL)
-       {
+       
        if ($jsonn->message != "Invalid username/password")
        	{ 
 				
@@ -588,7 +569,7 @@ return;
 				
            $jsonx = json_decode($respx, true);
            
-           if ($jsonx['message'] !="No users were found.")
+           if ($jsonx['message'] != "No users were found.")
            {
            
            $recID = $jsonx["data"]["0"]["id"];
@@ -609,10 +590,11 @@ return;
            	"device":{
            	"deviceId":"$devID",
            	"deviceImei":"$devID",
-           	"deviceModel":"$DevName",
-           	"deviceName":"$DevName",
+           	"deviceModel":"$devicenamemodel",
+           	"deviceName":"$devicenamemodel",
            	"deviceOs":"Android",
-           	"isEmulator":false,          						       "notificationToken":"eFEXEC5pTAeXLu7JjIlpNX:APA91bF8I2ZGs8wUNDjpw5lSnzrz8fB652HYMxWBdTGtFRSUaBEd0pHZQvWXAd00ESKVUO_VtYieRQxtfEU7f3RUIHEs5zXGZSVqk5PfbzjZTJQcue0vHYRiEobXHk8JUlTa0nmPCdgR",
+           	"isEmulator":false,          						       
+            "notificationToken":"eFEXEC5pTAeXLu7JjIlpNX:APA91bF8I2ZGs8wUNDjpw5lSnzrz8fB652HYMxWBdTGtFRSUaBEd0pHZQvWXAd00ESKVUO_VtYieRQxtfEU7f3RUIHEs5zXGZSVqk5PfbzjZTJQcue0vHYRiEobXHk8JUlTa0nmPCdgR",
 			"osVersion":"11"
          				},
 			"recipientId":' . $recID . '}';
@@ -622,23 +604,9 @@ return;
      		curl_close($curlGEMS);
 
 			$jsonGEM = json_decode($response_GEMbalance);
-			
-			//var_dump($jsonGEM);
-			//break;
-            $msgs = "sent";
-            
-            if ($jsonGEM->message == "Cannot send 0.00 LYKA GEMs.")
-             {  
-               $msgs="no GEMs to send";
-             }
-
-            if ($jsonGEM->message == "Insufficient balance.")
-             {  
-               $msgs="check account";
-             }
                
             print "$White";
-            printf("%2s) %-19s $Green %.2f >$Cyan %s\n",$xcount,$activeaccount,$TotalGEMS,$msgs);
+            printf("%2s) %-19s $Green %.2f >$Cyan sent\n",$xcount,$activeaccount,$TotalGEMS);
             $harvestedgems =$harvestedgems+$TotalGEMS;
 
             } else {
@@ -652,10 +620,10 @@ return;
            	printf("%2s) %-19s >$Green %s\n",$xcount,$activeaccount,$jsonn->message);
        	    
        	    } //!="Invalid username
-            }
+
        		usleep(100000);
        			
-       		} while ($xcount !=count($maxaccounts)); //end of loop for each acct
+       		} while ($xcount != $end +1); //end of loop for each acct
        				
        printf("\n$White%'-40s\n","");
        printf ("%17s GEMS >$Yellow %.2f\n","Total harvested",$harvestedgems);
@@ -673,6 +641,8 @@ return;
 function logintoaccount($acctname, $password) 
 {
     $devID=uniqid('eee');
+    $devmodel=uniqid('REN');
+    $devname=uniqid('SAM');
 
     $urll = "https://identity.mylykaapps.com/useraccounts/login";
     $curll = curl_init($urll);
@@ -683,12 +653,12 @@ function logintoaccount($acctname, $password)
     curl_setopt($curll, CURLOPT_HTTPHEADER, $headerss);
     $DeviceInfo = <<<DATA
     {
-    "countryCode": "US",
+    "countryCode": "PH",
     "device": {
     "deviceId": "$devID",
     "deviceImei": "$devID",
-    "deviceModel": "$devID",
-    "deviceName": "$devID",
+    "deviceModel": "$devmodel",
+    "deviceName": "$devname",
     "deviceOs": "Android",
     "isEmulator": false,
     "notificationToken": "eEBjxYrDSJyFw7N-DpEGNG:APA91bEZnWo-TDdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VODiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-gz",
@@ -702,6 +672,9 @@ function logintoaccount($acctname, $password)
     $respp = curl_exec($curll);
     curl_close($curll);
     $loginstatus = json_decode($respp);
+
+   // var_dump($loginstatus);
+   // exit;
 
     return $loginstatus; 
 } //end login to account
@@ -718,20 +691,19 @@ function ratepostmenu($ratersaccount, $mainaccounts)
     $Green    = "\033[0;32m" ;      # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-$ScriptName ="RATE POSTS\n© aparri software development 2022";
-$Web="https://github.com/reneaparri/lyka";
+$ScriptName ="POSTS RATING\n© 2022 Rene Aparri";
 
 print "$White";
 print "$ScriptName\n";
-print "$Web\n\n";
-print "\nRATE POSTS Menu\n";
+print $GLOBALS['Webs'];
+print "\nMenu\n";
 print "-----------------------------";
 
 print "$White\na )$Cyan raters > main accounts";
-print "$White\nb )$Cyan raters > other account";
-print "$White\nc )$Cyan main > main accounts";
-print "$White\nd )$Cyan main > other accounts";
-print "$White\ne )$Cyan other > other account";
+print "$White\nb )$Cyan raters > friends account";
+print "$White\nc )$Cyan main > raters accounts";
+print "$White\nd )$Cyan main > friends account";
+print "$White\ne )$Cyan friends > friends account";
 print "$White\nf )$Cyan back to main";
 print "$White\n-----------------------------\n";
 
@@ -746,13 +718,13 @@ print "$White\n-----------------------------\n";
         print "\n\n";
         mainmenu();        
 
-    case "b" : //raters to other
+    case "b" : //raters to friends
         max2u($ratersaccount,"Raters");     
         print "\n\n";
         mainmenu();    
         
     case "c" : //main to main
-        max2max($mainaccounts,$mainaccounts);
+        main2raters($mainaccounts,$ratersaccount);
         print "\n\n";
         mainmenu();     
     
@@ -761,12 +733,12 @@ print "$White\n-----------------------------\n";
         print "\n\n";
         mainmenu();     
 
-    case "e" : //other to other
-        other2other();     
+    case "e" : //friends to friends
+        friendsaccount();     
         print "\n\n";
         mainmenu();        
     
-    case "f" : //other
+    case "f" : //friends
         @system("clear");
         mainmenu();        
             
@@ -789,17 +761,17 @@ function max2max($raters,$acct2rate)
     
     @system("clear");
 
-    $Cyan     = "\033[0;36m" ;        # Cyan
+    $Cyan     = "\033[0;36m" ;       # Cyan
     $White    = "\033[0;37m" ;       # White
     $Green    = "\033[0;32m" ;       # Green
-    $Yellow   = "\033[0;33m" ;      # Yellow
+    $Yellow   = "\033[0;33m" ;       # Yellow
     
-    $ScriptName ="main > main | raters > main";
-    $Web="https://github.com/reneaparri/lyka";
+    $ScriptName ="raters > main";
+    
 
     print "$White";
     print "$ScriptName\n";
-    print "$Web\n\n";
+    print $GLOBALS['Webs'];
     print "max-rate posts\n";
     
     //should use one password per raters account
@@ -811,30 +783,80 @@ function max2max($raters,$acct2rate)
     print "$Green\nStart [$raters[$start]]";
     print "$Green\nEnd   [$raters[$end]]\n";
 
-    $newraters=[];
-      $x=$start;
-    do {
-        array_push($newraters,$raters[$x]);
-            $x++;
-    } while ($x != $end+1);
-
     print "$Yellow\n";
     print "Input RATERS password\n$Green\n";
+  
     $mainpassword=readline('Password : ');
     if ($mainpassword == '')
     {
         print "$Yellow\n**empty password**\n\n";
         mainmenu();    }
     
-    ratemypost($ScriptName,$Web,$newraters,$mainpassword,$acct2rate);
+    ratemypost($ScriptName,$Web,$raters,$mainpassword, $start, $end, $acct2rate);
     return;
 
 }   //end of max2max
 
 #   ///////////////////////////////////////////
-#   // max2u
+#   // main2raters
 #   //
 #   //////////////////////////////////////////
+
+function main2raters($raters, $acct2rate)
+{
+    
+    @system("clear");
+
+    $Cyan     = "\033[0;36m" ;       # Cyan
+    $White    = "\033[0;37m" ;       # White
+    $Green    = "\033[0;32m" ;       # Green
+    $Yellow   = "\033[0;33m" ;       # Yellow
+    
+    $ScriptName ="main > raters";
+    
+
+    print "$White";
+    print "$ScriptName\n";
+    print $GLOBALS['Webs'];
+    print "you are about to rate posts using your main accounts\n";
+    
+    print "\nMAIN accounts\n";
+    $start=0;
+    $end=3;
+    print "$Green\n1) [$raters[0]]";
+    print "$Green\n2) [$raters[1]]";
+    print "$Green\n3) [$raters[2]]";
+    print "$Green\n3) [$raters[3]]\n";
+
+    $acct2rate2=[];
+    array_push($acct2rate2,"$acct2rate[0]"); 
+    array_push($acct2rate2,"$acct2rate[1]"); 
+    array_push($acct2rate2,"$acct2rate[2]"); 
+    array_push($acct2rate2,"$acct2rate[3]"); 
+
+    print "$White\nAccounts to RATE\n";
+  
+    print "$Green\n1) [$acct2rate2[0]]";
+    print "$Green\n2) [$acct2rate2[1]]";
+    print "$Green\n3) [$acct2rate2[2]]";
+    print "$Green\n4) [$acct2rate2[3]]\n";
+
+
+    print "$Yellow\n";
+    print "Input MAIN account password\n$Green\n";
+  
+    $mainpassword=readline('Password : ');
+    if ($mainpassword == '')
+    {
+        print "$Yellow\n**empty password**\n\n";
+        mainmenu();    }
+
+    ratemypost($ScriptName,$Web,$raters,$mainpassword, $start, $end, $acct2rate2);
+    return;
+
+}   //end of main2raters
+
+
 
 function max2u($raters,$raterstype)
 {
@@ -846,12 +868,12 @@ function max2u($raters,$raterstype)
     $Green    = "\033[0;32m" ;       # Green
     $Yellow   = "\033[0;33m" ;      # Yellow
 
-    $ScriptName ="$raterstype account to max-rate other account\n© aparri software development 2022";
-    $Web="https://github.com/reneaparri/lyka";
+    $ScriptName ="$raterstype account to max-rate friends account\n© 2022 Rene Aparri";
+  
 
     print "$White";
     print "$ScriptName\n";
-    print "$Web\n\n";
+    print $GLOBALS['Webs'];
     print "Needed: usernames to RATE\n";
     
          #get acct names to rate
@@ -859,7 +881,7 @@ function max2u($raters,$raterstype)
         $acct=0;
         
         print "$Yellow\n";
-        print "Account to RATE [max of 4]\n";
+        print "Friends account to RATE [max of 4]\n";
         print "press enter when done\n$Green\n";
         do {
             $inputusername = readline("Username : ");
@@ -884,13 +906,6 @@ function max2u($raters,$raterstype)
     print "$Cyan\nStart [$raters[$start]]";
     print "$Cyan\nEnd   [$raters[$end]]\n";
 
-    $newraters=[];
-      $x=$start;
-    do {
-        array_push($newraters,$raters[$x]);
-            $x++;
-    } while ($x != $end+1);
-
     print "$Green\n";
     print "$raterstype account password\n$Green";
     $mainpassword=readline('Password : ');
@@ -899,36 +914,36 @@ function max2u($raters,$raterstype)
         print "$Yellow\n**empty password**\n\n";
         mainmenu();    }
 
-    ratemypost($ScriptName,$Web,$newraters,$mainpassword,$acct2rate);
+    ratemypost($ScriptName,$Web,$raters, $mainpassword, $start, $end, $acct2rate);
     return;
           
 
 } //end of max2u
 
 
-function other2other()
+function friendsaccount()
 {
     @system("clear");
 
     $Cyan     = "\033[0;36m" ;        # Cyan
-    $White    = "\033[0;37m" ;       # White
-    $Green    = "\033[0;32m" ;       # Green
-    $Yellow   = "\033[0;33m" ;      # Yellow
+    $White    = "\033[0;37m" ;        # White
+    $Green    = "\033[0;32m" ;        # Green
+    $Yellow   = "\033[0;33m" ;        # Yellow
     
-    $ScriptName ="Other 2 Other Account \n© aparri software development 2022";
-    $Web="https://github.com/reneaparri/lyka"; 
+    $ScriptName ="Rate Friends Account \n© 2022 Rene Aparri";
+  
 
 print "$White";
 print "$ScriptName\n";
-print "$Web\n\n";
-print "let's rate each others posts\n";
+print $GLOBALS['Webs'];
+print "this routine will help you rate the post of your friend\n";
 
 $acct2rate=[];
 $acct=0;
 
 print "$Green\n";
-print "Account to RATE [max of 4]\n";
-print "press enter when done\n$Green\n";
+print "Friends account to RATE$Yellow [max of 4]$Green\n";
+print "press enter when done\n$Yellow\n";
 do {
     $inputusername = readline("Username : ");
     if ($inputusername !='') {
@@ -939,14 +954,14 @@ do {
  
  if ($acct == 0)  {
      print "$Yellow";
-     print "> no account to RATE entered\n\n";
+     print "**no account entered\n\n";
         mainmenu(); 
         }
 
 $raters = [];
 $usr=0;
 print "$Cyan\n";
-print "Raters/Dummy account username\n";
+print "Raters account username\n";
 print "enter blank when done\n$Green\n";
 do {
    $username = readline('Username : ');
@@ -959,13 +974,14 @@ do {
 if ($usr != 1)
 {
     print "$Yellow\n";
-    print "no RATERS acount entered\n";
+    print "no RATERS account entered\n";
     print "pls. enter atleast one (1) account\n\n";
-    mainmenu();}
+    mainmenu();
+}
 
 #should use one password for all accounts
 print "$Yellow\n";
-print "Raters/Dummy account password\n$Green\n";
+print "Raters account password\n$Green\n";
 $mainpassword=readline('Password : ');
 if ($mainpassword == '')
 {
@@ -973,12 +989,13 @@ if ($mainpassword == '')
     print "\n**empty password**\n\n";
         mainmenu();
 }
+$start=0;
+$end = count($raters);
 
-
-ratemypost($ScriptName,$Web,$raters,$mainpassword,$acct2rate);
+ratemypost($ScriptName, $Web, $raters, $mainpassword, $start, $end, $acct2rate);
 return;
 
-} //end of other2other
+} //end of friends2friends
 
 
    #///////////////////////////////////////////
@@ -986,37 +1003,38 @@ return;
    #//
    #//////////////////////////////////////////
 
-function ratemypost($ScriptName,$Web,$raters,$mainpassword,$acct2rate)
+function ratemypost($ScriptName, $Web, $raters, $mainpassword, $start, $end, $acct2rate)
 {
 
 // Regular Colors
 $Cyan     = "\033[0;36m" ;        # Cyan
-$White    = "\033[0;37m" ;       # White
-$Green    = "\033[0;32m" ;       # Green
-$Yellow   = "\033[0;33m" ;      # Yellow
+$White    = "\033[0;37m" ;        # White
+$Green    = "\033[0;32m" ;        # Green
+$Yellow   = "\033[0;33m" ;        # Yellow
 
 
 @system("clear");
 print "$White\n";
 print "$ScriptName\n";
-print "$Web\n$Yellow\n";
-print "we gathered all the things needed\n";
-print "rating posts will start...\n\n";
-sleep(2);
+print $GLOBALS['Webs'];
+print "$Yellow\nwe have enough data needed to proceed\n";
+print "posts rating is starting ...\n\n";
+usleep(100000);
 
 #/////////////////// start rating ////////////////////
 
-$noofraters=count($raters);
-$rated=0;
+$noofraters=$end+1; //count($raters);
 
-foreach ($raters as $currentRater) :  #//raters
-$rated++;
+$rated=$start;
 
-    #login to raters
-    $jsonn = logintoaccount($currentRater,$mainpassword);
-    
-    if ($jsonn != NULL)
-    {
+do {
+   $currentrater = $raters[$rated];
+
+	$rated++;
+
+    //#login to raters
+    $jsonn = logintoaccount($currentrater,$mainpassword);
+
     if ($jsonn->message == "User logged in") :
 
     $msgn = $jsonn->message;
@@ -1028,21 +1046,21 @@ $rated++;
     print "$Cyan\n";
     print "Raters status | $msgn\n";
     
-    # loop to each account to rate
+    // loop to each account to rate
 
     $toratecount=count($acct2rate);
     $donerating=0;
     
-    foreach ($acct2rate as $BeingRated) : 
+    foreach ($acct2rate as $beingrated) : 
     
         $donerating++;
-        if ($currentRater != $BeingRated) : #avoid rating own post
+        if ($currentrater != $beingrated) : #avoid rating own post
               
-        $urlm = "https://users.mylykaapps.com/api/v3/users/searchsuggestedpeople?searchText=$BeingRated&os=android&pageIndex=1&pageSize=16";
+        $urlm = "https://users.mylykaapps.com/api/v3/users/searchsuggestedpeople?searchText=$beingrated&os=android&pageIndex=1&pageSize=16";
         $curlm = curl_init($urlm);
         curl_setopt($curlm, CURLOPT_URL, $urlm);
         curl_setopt($curlm, CURLOPT_RETURNTRANSFER, true);
-        $headersm = array("user-agent:Lyka/3.6.65 (com.thingsilikeapp; build:865 Android O_MR1 28)", "authorization: Bearer $bearer",);
+        $headersm = array("user-agent:Lyka/3.6.65 (com.thingsilikeapp; build:865 Android 11)", "authorization: Bearer $bearer",);
         curl_setopt($curlm, CURLOPT_HTTPHEADER, $headersm);
         $respm = curl_exec($curlm);
         curl_close($curlm);
@@ -1055,8 +1073,8 @@ $rated++;
         $verifiedaccount = $jsonm["data"]["0"]["userName"];
     
             print "$White\n";
-            printf("%-5s (%2s/%2s) | %-15s\n","Rater",$rated,$noofraters,$currentRater);
-            printf("%-5s (%2s/%2s) | %-15s\n","Rated",$donerating,$toratecount,$BeingRated);
+            printf("%-5s (%2s/%2s) | %-15s\n","Rater",$rated,$noofraters,$currentrater);
+            printf("%-5s (%2s/%2s) | %-15s\n","Rated",$donerating,$toratecount,$beingrated);
   
             usleep(200000);  
             $urld = "https://profiles.mylykaapps.com/api/v3/profiles/GetProfilePosts?os=android&pageIndex=1&pageSize=50&id=$verifiedaccountID&category=ALL";
@@ -1076,20 +1094,26 @@ $rated++;
                        $x++;
                    } while ($x !=10);
     
-    #actual rating of posts
-    #loop 10 times
+                  // #actual rating of posts
+                  // #loop 10 times
+                   
                     $PostNum=0;
                     $xcount=1;
                     $timetosleep=1;
+
+                    $devID=uniqid('eab');
+                    $devIMEI=uniqid('zac');
+                    $devicenamemodelmodel=uniqid('eea');
+
                     do {
-                        $devID=uniqid('eab');
-                        $devnamemodel=uniqid('eea');
+
                     
                         print "$White"; 
                         printf("%-5s$Green #%2s > ",".mr.","$xcount");
 
                         $url = "https://posts.mylykaapps.com/api/v3/posts/ratepost";
-                        $headers = array("authorization:Bearer $bearer", "user-agent:Lyka/3.6.65 (com.thingsilikeapp; build:865 Android O_MR1 28))", "deviceos: android", "Content-Type: application/json",);
+                        $headers = array("authorization:Bearer $bearer", "user-agent:Lyka/3.6.65 (com.thingsilikeapp; build:865 Android 11))",
+                                        "deviceos: android", "Content-Type: application/json",);
                         $curl = curl_init($url);
                         curl_setopt($curl, CURLOPT_URL, $url);
                         curl_setopt($curl, CURLOPT_POST, true);
@@ -1099,9 +1123,9 @@ $rated++;
                     {
                         "device": {
                         "deviceId"         : "$devID",
-                        "deviceImei"       : "$devID",
-                        "deviceModel"      : "$devnamemodel",
-                        "deviceName"       : "$devnamemodel",
+                        "deviceImei"       : "$devIMEI",
+                        "deviceModel"      : "$devicenamemodelmodel",
+                        "deviceName"       : "$devicenamemodelmodel",
                         "deviceOs"         : "Android",
                         "isEmulator"       : false,
                         "notificationToken": "eEBjxYrDSJyFw7N-DpEGNB:APA91bEZnWo-TRdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VDiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-pg",
@@ -1115,39 +1139,55 @@ $rated++;
                         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
                         $resp = curl_exec($curl);
                         curl_close($curl);
+             
+             
                         $json = json_decode($resp);
         
+                    
                         if ($json != NULL)
                         {    
-                        print "$Cyan";
-                        $postmessage=$json->message;
+                        print "$Green";
+                    	    $postmessage=$json->message;
                         
                             $timetosleep=1;
                         if (strstr($postmessage,'Congratulations')) {
-                            print "rated 10+ posts \n";
+                            print "rated over 10 posts \n";
+                            $devID=uniqid('ccc');
+                            $devIMEI=uniqid('zgc');
                            // var_dump($json);
                         } elseif ($postmessage=="You already have rated this post.")
                         {
                          print "post already rated\n";
+                         $devID=uniqid('xyz');
+                         $devIMEI=uniqid('yzx');
                          //var_dump($json);   
                         } elseif (strstr($postmessage,'Too many')) {
-                            print "failed, retrying\n";
+                            print "$Yellow";
+			                print "failed, retrying\n";
+                            $devID=uniqid('rrr');
+                            $devIMEI=uniqid('sss');
                             $PostNum--;
                             $xcount--;
                             $timetosleep=10;
                            // var_dump($json);
 
                         } elseif (strstr($postmessage,'Forbidden')) {
+                            print "$Yellow";
                             print "forbidden, retrying\n";
+                            $devID=uniqid('veb');
+                            $devIMEI=uniqid('erl');
                             $PostNum--;
                             $xcount--;
                             $timetosleep=10;
                         } elseif (strstr($postmessage,"Post rating")) {
                            print "earnings saved\n";
+                           $devID=uniqid('qrs');
+                           $devIMEI=uniqid('339');
                            //var_dump($json);    
                         } else {
                            print "$postmessage\n";
-                                
+                           $devID=uniqid('421');
+                           $devIMEI=uniqid('rga');    
                         }
                         } else { 
                             print "LYKA server error\n";  
@@ -1158,43 +1198,44 @@ $rated++;
                         $xcount++;
 
                         if ($timetosleep != 10)
-                        { usleep(300000);}
+                        { usleep(100000);}
                         else { sleep($timetosleep); }
     
                     } while ($PostNum !=10);
 
-                    print "$White\n[$BeingRated] >>> ratings done\n";
+                    print "$White\n[$beingrated] >>> ratings done\n";
                     print "-------------\n";   
    #                 //// end of do...while /////////
                 else :
-                    print "\n$Yellow >> error connecting to [$BeingRated]\n"  ; 
+                    print "\n$Yellow >> error connecting to [$beingrated]\n"  ; 
                           endif;
                   
                 else:
-                    print "\n$Yellow >> skip rating [$BeingRated]\n";
+                    print "\n$Yellow >> skip rating [$beingrated]\n";
     
             endif; //raters!=rated
                 usleep(100000);
            endforeach;
+      
+         
   #  ///////////// end of loop to each account to rate /////////////
   
     
     else : //jsonn !=null
         print "$Yellow\n";
-        print "Failed to login to RATERS account";
+        print "failed to login to RATERS account";
         print "\n$White";
 
     endif;    
 
-
-    sleep(2);
-    }
-    
-    endforeach;
+    usleep(200000);
+      
+       } while ($rated != $end + 1);    
+    //endforeach;
     
      print "$White\n";
-     print "Summary of Rate Posts\n";
-     checkgems($raters, $mainpassword);
+     print "Summary of Posts Rating\n";
+     checkgems($raters, $start, $end, $mainpassword);
 
 
     print "$White\n";
@@ -1209,23 +1250,23 @@ function addpostmomentMenu($posttype, $ratersaccount, $mainaccounts)
 {
     @system("clear");
 
-    $Cyan     = "\033[0;36m" ;        # Cyan
+    $Cyan     = "\033[0;36m" ;       # Cyan
     $White    = "\033[0;37m" ;       # White
     $Green    = "\033[0;32m" ;       # Green
-    $Yellow   = "\033[0;33m" ;      # Yellow
+    $Yellow   = "\033[0;33m" ;       # Yellow
 
-$ScriptName ="ADD POST/MOMENTS ROUTINE\n© aparri software development 2022";
-$Web="https://github.com/reneaparri/lyka";
+$ScriptName ="ADD POSTS/MOMENTS ROUTINE\n© 2022 Rene Aparri";
+
 
 print "$White";
 print "$ScriptName\n";
-print "$Web\n\n";
-print "\nADD $posttype Menu\n";
+print $GLOBALS['Webs'];
+print "\nadd $posttype menu\n";
 print "-----------------------------";
-print "$White\na )$Yellow add to main accounts";
-print "$White\nb )$Yellow add to raters accounts";
-print "$White\nc )$Yellow add to other account";
-print "$White\nd )$Yellow back to main";
+print "$White\na )$Green add to main accounts";
+print "$White\nb )$Green add to raters accounts";
+print "$White\nc )$Green add to friends account";
+print "$White\nd )$Green back to main";
 print "$White\n-----------------------------\n";
 
    print "Your selection > ";
@@ -1244,9 +1285,9 @@ print "$White\n-----------------------------\n";
         print "\n\n";
         exit;
       
-      case "c" : //post to other 
+      case "c" : //post to friends 
     
-       addpost2account($ratersaccount,"$posttype","other");
+       addpost2account($ratersaccount,"$posttype","friends");
        print "\n\n";
        exit;
 
@@ -1268,30 +1309,30 @@ function addpost2account($newaccounts, $posttype, $accounttype)
    //Set font color
    
    // Regular Colors
-   $Black    = "\033[0;30m" ;     //  # Black
-   $CRed     = "\033[0;31m" ;     //  # Red
-   $Green    = "\033[0;32m" ;       # Green
-   $Yellow   = "\033[0;33m" ;      # Yellow
-   $Blue     = "\033[0;34m" ;        # Blue
-   $Cyan     = "\033[0;36m" ;        # Cyan
-   $White    = "\033[0;37m" ;       # White
+   $Black    = "\033[0;30m" ;     //Black
+   $CRed     = "\033[0;31m" ;     //Red
+   $Green    = "\033[0;32m" ;     //Green
+   $Yellow   = "\033[0;33m" ;     //Yellow
+   $Blue     = "\033[0;34m" ;     //Blue
+   $Cyan     = "\033[0;36m" ;     //Cyan
+   $White    = "\033[0;37m" ;     //White
    
-   $ScriptName ="ADD POST/MOMENT ROUTINE\n© aparri software development 2022";
-   $Web="https://github.com/reneaparri/lyka";
+   $ScriptName ="ADD POSTS/MOMENT ROUTINE\n© 2022 Rene Aparri";
+   
    
    $acct=0;
    
    print "$White";
    print "$ScriptName\n";
-   print "$Web\n\n";
+   print $GLOBALS['Webs'];
    print "add $posttype(s) to $accounttype account\n";
    
    $acct2post = []; 
 
-   if ($accounttype == 'other')
+   if ($accounttype == 'friends')
    {
    $acct=0;
-
+   $start=0; 
    print "$Yellow\n";
    print "Input username to add $posttype(s)\n";
    print "press enter when done\n$Green\n";
@@ -1309,6 +1350,19 @@ function addpost2account($newaccounts, $posttype, $accounttype)
        print " > pls. enter atleast one (1) username\n\n";
            mainmenu(); 
            }
+    $end=count($acct2post)-1;
+
+   } elseif ($accounttype == 'main')
+   {
+    print "\nMAIN accounts\n";
+    $start=0;
+    $end=3;
+    print "$Green\n1) [$newaccounts[0]]";
+    print "$Green\n2) [$newaccounts[1]]";
+    print "$Green\n3) [$newaccounts[2]]";
+    print "$Green\n3) [$newaccounts[3]]\n";
+ 
+    $acct2post=$newaccounts; 
 
    } else {
 
@@ -1319,16 +1373,20 @@ function addpost2account($newaccounts, $posttype, $accounttype)
     if ($end == '') { $end=count($newaccounts)-1;} else {$end--;}
     print "$Cyan\nStart [$newaccounts[$start]]";
     print "$Cyan\nEnd   [$newaccounts[$end]]\n";
+  
+     $acct2post=$newaccounts; 
+    }
 
-      $x=$start;
-    do {
-        array_push($acct2post,$newaccounts[$x]);
-            $x++;
-    } while ($x != $end+1);
-        }
+   print "$White";
+   print "\nHow many $posttype(s) to add [default=10]\n";
+   $postcount=readline("Count : ");
+   
+   if ($postcount =='') {
+       $postcount=10;
+   }
 
    print "$Green\n";
-   print "Enter account password*\n";
+   print "Lastly, enter account password\n";
    print "\n";
    
    print "$White";
@@ -1336,33 +1394,25 @@ function addpost2account($newaccounts, $posttype, $accounttype)
    if ($mainpassword == '')
    {
        print "$Yellow";
-       print "\n> no password was entered\n\n";
+       print "\n*no password was entered\n\n";
        mainmenu();  
    }
-   
-   print "$White";
-   print "\nNumber of $posttype to add [default=10]\n";
-   $postcount=readline("Count : ");
-   
-   if ($postcount =='') {
-       $postcount=10;
-   }
-   
+      
    @system("clear");
    print "$White\n";
    print "$ScriptName\n";
-   print "$Web\n$Yellow\n";
-   print "let's now add $posttype to $accounttype account\n";
+   print $GLOBALS['Webs'];
+   print "$Yellow\nlet's now add $posttype to $accounttype account\n";
    print "pls. wait ...\n";
    usleep(50000);
    
-   loop2accounts($acct2post,$mainpassword,$posttype,$postcount, $accounttype);
+   loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accounttype, $start, $end);
 
 } //end of postit
 //////////////////////////////////////////////////////////////////////////////////
 
 
-function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accounttype)
+function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accounttype, $start, $end)
 {
 
     $Black    = "\033[0;30m" ;       # Black
@@ -1374,91 +1424,111 @@ function loop2accounts($acct2post, $mainpassword, $posttype, $postcount, $accoun
     $White    = "\033[0;37m" ;       # White
     
  
-    $noofaccounts=count($acct2post);
-    $posted=0;
+    $noofaccounts=$end+1; //count($acct2post);
+    $posted=$start;
 
-    foreach ($acct2post as $currentUser) {
-   
+   do {   //loop to each username
+      
+        $currentuser=$acct2post[$posted];
         $posted++;
     
 
     //Login to account
-    $jsonn = logintoaccount($currentUser,$mainpassword);
+    $jsonn = logintoaccount($currentuser,$mainpassword);
     
     if ($jsonn != NULL)
-    {    
+    {
     if ($jsonn->message != "Invalid username/password") :
  
-    print "$White\n";
-    printf("%-5s (%2s/%-2s) | %-15s\n","User",$posted, $noofaccounts,$currentUser);
-
-    print "$Cyan";
-    
     $msgn = $jsonn->message;
     $status = $jsonn->status;
-    $vuser = $jsonn->data->username;
+    $vuser = $jsonn->data->user->userName;
+    $userid=$jsonn->data->user->id;
     $bearer = $jsonn->data->token->accessToken;
-    
-          print "$White";
-          printf("%-13s | %.2f\n","Lyka Gems",getgembalance($bearer));
-          printf("%-13s |$Cyan %s\n\n","Status",$msgn);
+
+    print "$White\n";
+    printf("%-4s (%2s/%-2s) | %-15s\n","User",$posted, $noofaccounts,$vuser);
+
+    print "$Green\n";
+     //     print "$White";
+     //     printf("%-13s | %.2f\n","Lyka Gems",getgembalance($bearer));
+     //     printf("%-13s |$Cyan %s\n\n","Status",$msgn);
     
      $postloop=1;
      $postretry=1;
-     do {  
+
+     do {  //loop x times to add post/moment
         
        print "$White";
-       printf(".%-6s #%-2s > ",$posttype,$postloop);
+       printf("adding %-6s #%-2s  > ",$posttype,$postloop);
 
-//       $deviceid = uniqid('daf');
-         
-       print "$Cyan";
+       print "$Green";
        
-         $poststatus = postmoments($vuser, $bearer, $posttype, $accounttype);
+         $poststatus = postmoments($userid, $bearer, $posttype, $accounttype);
        
-         if ($poststatus !='')
-         {
-         if (strstr($poststatus,"Too many")) {
-             print "retrying ($postretry)";
-             sleep(5);
-             $postloop--;
-             $postretry++; 
-          } else {
-           print "$poststatus";
-         }
-        }  else { print "error"; }
-         
+//        if ($poststatus != '')    {
+        if ($poststatus == "saved")
+        {
+          print "success";
+          $postretry =1;
+
+        } else
+
+        {
+            print "$Yellow";
+            print "error, retrying ($postretry)";
+            sleep(5);
+            $postloop--;
+            $postretry++;
+        }
+    
+//    } 
+
          print "\n";
         
          $postloop++;
     
-    } while ($postloop !=$postcount+1);
+    } while ($postloop != $postcount+1);
     
-    print "$Yellow";
-    print "\nadd $posttype to [$currentUser] done";
+  //  print "$Yellow";
+  //  print "\nadd $posttype to [$currentuser] done";
     
 else :
     print "$Green\n$jsonn->message\n";
-    break;    
+   // break;    
 endif;
 
-     
+}
+else {                      //jsonn == NULL
+    print "$Green\nError\n";
+  //  break;
+}
+
     print "\n$White";
     print "--------------------------------\n";
     usleep(100000);
     
-    } //end of loop for x username
-    }
+} while ($posted != $end+1); 
+    //end of loop for x username
+    
+    if ($jsonn != NULL)
+    {
     if ($jsonn->message != "Invalid username/password")
     {
     print "$White\n";
     print "Summary - add $posttype(s)\n";
-    checkgems($acct2post,$mainpassword);
+    checkgems($acct2post, $start, $end, $mainpassword);
     }
     else
     {
     print "\n$White";
     $x=readline("press enter to continue");
+    }
+    } else {
+
+    print "\n$White";
+    $x=readline("error encountered. press enter to continue");
+    
     }
 
     mainmenu();
@@ -1466,12 +1536,12 @@ endif;
 } // loop2accts
 
 
-function postmoments($currentUser, $bearer, $posttype, $accounttype) {
+function postmoments($userid, $bearer, $posttype, $accounttype) {
 
-    $device_id=uniqid('eaf');
+   $deviceid=uniqid('fff');
     
-   $currUsrID = getUserId($device_id, $bearer);
-
+   $currUsrID = $userid;
+   
    $uploadLegacy = "https://media.mylykaapps.com/api/v1/media/social/multi-upload-url";
    
    $uploadPay = <<<DATA
@@ -1479,19 +1549,30 @@ function postmoments($currentUser, $bearer, $posttype, $accounttype) {
         "clientId":"$currUsrID",
         "files":[{
             "fileName":"https://github.com/maximum001/images/blob/main/p1.jpeg", 
-            "mediaType":"image"}]        }
+            "mediaType":"image"}] }
    DATA; 
    
    $uploadLegPost = postX($uploadLegacy,$uploadPay,$bearer);
- 
+
+
+   if ($uploadLegPost != NULL)
+   {
+
+
+  // var_dump($uploadLegPost);
+  // exit;
+
    if($uploadLegPost->data){
        $mediaID = $uploadLegPost->data[0]->mediaId;
 
        $amznToken = "https://media.mylykaapps.com/api/v1/access/aws/media-token/$currUsrID";
-       $firstGet = getX($amznToken,$device_id,$bearer);
+       $firstGet = getX($amznToken,$deviceid,$bearer);
 
-       if($firstGet->data){
-           $amzIDid = $firstGet->data->identityId;
+
+
+       //if($firstGet->data){
+       if ($firstGet != NULL) {
+        $amzIDid = $firstGet->data->identityId;
            $amzIDtoken = $firstGet->data->token; 
 
            $postURL = "https://cognito-identity.ap-southeast-1.amazonaws.com/";
@@ -1515,7 +1596,13 @@ function postmoments($currentUser, $bearer, $posttype, $accounttype) {
            curl_close($postCurl);
            $postjson = json_decode($postResp);
 
-           if($postjson->Credentials){
+           //var_dump($postjson);
+           //exit;
+
+          // if($postjson->Credentials){
+
+            if ($postjson !=NULL)
+            {
                $sessToken = $postjson->Credentials->SessionToken;
                $aws_access_key_id = $postjson->Credentials->AccessKeyId;
                $aws_secret_access_key = $postjson->Credentials->SecretKey;
@@ -1611,11 +1698,11 @@ function postmoments($currentUser, $bearer, $posttype, $accounttype) {
                curl_exec($ch);
                $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                // print $http_code;
-               if ($http_code != 200) { print "failed\n"; }
+               if ($http_code != 200) { $pmessage ="failed"; }
                
                $delURL = "https://lyka-legacy-images-input.s3.ap-southeast-1.amazonaws.com/".$mediaID;
                $delHeader = array(
-                   "x-clientid: $device_id",
+                   "x-clientid: $deviceid",
                    "x-amz-date: $timestamp",
                    "x-amz-content-sha256: STREAMING-AWS4-HMAC-SHA256-PAYLOAD",
                    "Authorization: $authorization"
@@ -1628,19 +1715,15 @@ function postmoments($currentUser, $bearer, $posttype, $accounttype) {
                $deleteResp = curl_exec($deleteCurlx);
                curl_close($deleteCurlx);
                 
-                if ($posttype == "post") :
-                  $uploadurl="https://posting.mylykaapps.com/api/v3/posts/AddImagePost";
-                
-                else :
-                     $uploadurl = "https://momenting.mylykaapps.com/api/v3/moments/AddImageMoment";
-                endif;
 
                 usleep(100000);
 
                 if ($posttype == "post") :
-
+                    $uploadurl="https://posting.mylykaapps.com/api/v3/posts/AddImagePost";       
+                 if ($accounttype != 'friends')
+                 {                
                    $postresponse = postX($uploadurl, 
-                   payload($device_id,
+                   payload($deviceid,
                    '"files":[{
                     "imageURL":"https://www.w3schools.com/Css/img_lights.jpg",
                     "height":1024,
@@ -1650,14 +1733,32 @@ function postmoments($currentUser, $bearer, $posttype, $accounttype) {
                     "isHighlight":false,
                     "isSharedLink":false,
                     "mediaTags":"[[]]",
-                    title:"#ActiveLYKA'.date("l").'",
-                    hashtags:"#LYKA GEMS",
-                    content: "#"'),
+                    title:"'.date("l jS \of F").'",
+                    hashtags:"#ActiveLYKA",
+                    content: "'.date("Ymd").'"'),
                     $bearer);
-
-                else : 
+                  } else
+                  {                
                    $postresponse = postX($uploadurl, 
-                   payload($device_id,
+                   payload($deviceid,
+                   '"files":[{
+                    "imageURL":"https://www.w3schools.com/Css/img_lights.jpg",
+                    "height":1024,
+                    "key":"'.$mediaID.'", 
+                    "RemoteStorage":"lyka-legacy-images-input" ,
+                    "type":"image","width":768}],
+                    "isHighlight":false,
+                    "isSharedLink":false,
+                    "mediaTags":"[[]]",
+                    title:"#LYKA",
+                    hashtags:"#LYKA GEMS",
+                    content: "'.date("l").'"'),
+                    $bearer);
+                   } 
+                else : 
+                   $uploadurl = "https://momenting.mylykaapps.com/api/v3/moments/AddImageMoment"; 
+                   $postresponse = postX($uploadurl, 
+                   payload($deviceid,
                    '"files":[{
                        "imageURL":"https://www.w3schools.com/Css/img_lights.jpg",
                        "height":2081,
@@ -1667,15 +1768,26 @@ function postmoments($currentUser, $bearer, $posttype, $accounttype) {
                        "width":1079}]'),
                         $bearer);
                 endif;
+                   if ($postresponse != NULL)
+                   {
+                     // print "$postresponse->message";
+                      $pmessage='error';
+                      if ($postresponse->message == '323 - Post saved.')
+                          {
+                            $pmessage="saved";
+                          }
+                      if ($postresponse->message == 'Moment retrieved.')
+                          {
+                            $pmessage="saved";
+                          }
+                   } else {$pmessage="error"; }
 
-                return $postresponse->message;
+                return $pmessage;
 
-        //   if( $response_message == "Moment retrieved."){ print "+1 moments"; }
-
-
-            } //end post-json
-       }
+            } else { return "error";} //end post-json
+       } else { return "error";}
     }     
+} else { return "error";}
 
 }  //end of postmoments
 /////////////////////////////////////////////////////////////////////////////
@@ -1692,21 +1804,21 @@ function postmoments($currentUser, $bearer, $posttype, $accounttype) {
  
  }
  
- function getX($urlx, $gdevID, $cooks = ""){
+ function getX($urlx, $deviceid, $bearer = ""){
     $getURL = $urlx;
-    $uAgent = 'Lyka/3.6.65 (com.thingsilikeapp; build:865 Android R 11)';
+    $useragent = 'Lyka/3.6.65 (com.thingsilikeapp; build:865 Android R 11)';
     $getHeader = array(
         "Content-Type: application/json; charset=UTF-8",
-        "user-agent: $uAgent",
-        "authorization: Bearer $cooks",
-        "x-clientid: $gdevID",
+        "user-agent: $useragent",
+        "authorization: Bearer $bearer",
+        "x-clientid: $deviceid",
         );
         $getCurl = curl_init($getURL);
         curl_setopt($getCurl, CURLOPT_URL, $getURL);
         curl_setopt($getCurl, CURLOPT_HTTPGET, true);
         curl_setopt($getCurl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($getCurl, CURLOPT_HTTPHEADER, $getHeader);
-        usleep(300000);
+        usleep(100000);
         $getResp = curl_exec($getCurl);
         curl_close($getCurl);
         $getjson = json_decode($getResp);
@@ -1714,16 +1826,16 @@ function postmoments($currentUser, $bearer, $posttype, $accounttype) {
         return $getjson;
  }
  
- function postX($urlx, $payloader, $cooks = ""){
+ function postX($urlx, $payloader, $bearer = ""){
     $postURL = $urlx;
-    $uAgent = 'Lyka/3.6.65 (com.thingsilikeapp; build:865 Android R 11)';
-    $postHeader = !$cooks 
+    $useragent = 'Lyka/3.6.65 (com.thingsilikeapp; build:865 Android R 11)';
+    $postHeader = !$bearer 
         ? array(
         "Content-Type: application/json; charset=UTF-8",
-        "user-agent: $uAgent") 
+        "user-agent: $useragent") 
         : array(
         "Content-Type: application/json; charset=UTF-8",
-        "user-agent: $uAgent","authorization: Bearer $cooks") ;
+        "user-agent: $useragent","authorization: Bearer $bearer") ;
         $postCurl = curl_init($postURL);
         curl_setopt($postCurl, CURLOPT_URL, $postURL);
         curl_setopt($postCurl, CURLOPT_POST, true);
@@ -1732,45 +1844,33 @@ function postmoments($currentUser, $bearer, $posttype, $accounttype) {
         curl_setopt($postCurl, CURLOPT_POSTFIELDS, $payloader);
         curl_setopt($postCurl, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($postCurl, CURLOPT_SSL_VERIFYPEER, false);
-        usleep(300000);
+        usleep(100000);
         $postResp = curl_exec($postCurl);
         curl_close($postCurl);
         $postjson = json_decode($postResp);
  
+       // var_dump($postjson);
+       // exit;
+
         return $postjson;
  }
  
- function payload($devIDx, $xtraPay, $rTokenx = ""){
+ function payload($deviceidx, $xtraPay, $rTokenx = ""){
 
-    $PhoneModel=array("iPhone 4","iPhone 4S","iPhone 5","iPhone 5c","iPhone 5s",
-    "iPhone 6","iPhone 6 Plus","iPhone 6s","iPhone 6s Plus",
-    "iPhone SE (1st generation)","iPhone 7","iPhone 7 Plus","iPhone 8",
-    "iPhone 8 Plus","iPhone X","iPhone XR","iPhone XS","iPhone XS Max",
-    "iPhone 11","iPhone 11 Pro","iPhone 11 Pro Max","iPhone SE","iPhone 12 mini","iPhone 12","iPhone 12 Pro",
-    "Tecno Spark 7","Tecno Spark 7 Pro","Vivo V11i","Vivo V11","Vivo V11 Pro",
-    "Oppo A94","Oppo A12","Vivo Z10","Samsung Galaxy S20","Vivo Y81","Vivo Nex S","Vivo Nex A","Vivo Y75s","Vivo Y83",
-    "Vivo X21i","Vivo Z1","Vivo Y53i","Nokia 5","Nokia 6","Vivo Y71","Vivo X21 UD","Vivo X21","Vivo V9",
-    "Vivo X20 Plus UD","Vivo Y75","Vivo V7","Samsung Galaxy S9","Vivo X20 Plus","Vivo X20","Vivo V7+",
-    "Vivo Y69","Vivo V5s","LG G+","Vivo Y66","Sony Xperia 10","Nokia 3315","Vivo Y55s","Tecno Spark 6 Air","Tecno Spark 6 Go","Vivo Xplay6",
-    "HTC U20 5G","Vivo X9","Google Pixel 5","OnePlus 9","OnePlus 10","Infinix Hot S10","Vivo X7","Vivo X6S Plus",
-    "Vivo X6S","Vivo Y31L","Oppo A2","Oppo A11","Vivo Xplay5 Elite","Vivo Y51L","Vivo X6 Plus",
-    "Vivo X6","Vivo Y51","Vivo Y27L","Vivo Y15S","Vivo V1Max","Vivo V1","Vivo X5Pro","Vivo X5Max+",
-    "Vivo X5S L","Vivo X Shot","Vivo X3S","Vivo Y15","Vivo Y22","Vivo X5Max","Nokia 3210"); 
-
-    $DevName=$PhoneModel[rand(0,50)];
+    $devicenamemodel=uniqid('ddd');
 
      $valdata = <<<DATA
              {"device": {
-                 "deviceId": "$devIDx",
-                 "deviceImei": "$devIDx",
-                 "deviceModel": "$DevName",
-                 "deviceName": "$DevName",
+                 "deviceId": "$deviceidx",
+                 "deviceImei": "$deviceidx",
+                 "deviceModel": "$devicenamemodel",
+                 "deviceName": "$devicenamemodel",
                  "deviceOs": "Android",
                  "isEmulator": false,
                  "osVersion": "11",
                  "notificationToken": "$rTokenx"
              },
-             "countryCode": "US",
+             "countryCode": "PH",
              $xtraPay
              }
              DATA; 
@@ -1791,10 +1891,60 @@ function getgembalance($bearer)
     curl_close($curlbal);
   
     $jsonbal = json_decode($respbal);
-    $gemsavailable = $jsonbal->data->totalGem;
 
+    $gemsavailable = 0;
+    
+    if ($jsonbal != NULL)
+    {
+    $gemsavailable = $jsonbal->data->totalGem;
+    }
     return $gemsavailable; 
 
 } //end of getgembalance
+
+
+function getID($acctname, $password) 
+{
+    $devID=uniqid('eee');
+
+    $urll = "https://identity.mylykaapps.com/useraccounts/login";
+    $curll = curl_init($urll);
+    curl_setopt($curll, CURLOPT_URL, $urll);
+    curl_setopt($curll, CURLOPT_POST, true);
+    curl_setopt($curll, CURLOPT_RETURNTRANSFER, true);
+    $headerss = array("Content-Type: application/json", "user-agent:Lyka/3.6.65 (com.thingsilikeapp; build:865 Android O_MR1 28)");
+    curl_setopt($curll, CURLOPT_HTTPHEADER, $headerss);
+    $DeviceInfo = <<<DATA
+    {
+    "countryCode": "PH",
+    "device": {
+    "deviceId": "$devID",
+    "deviceImei": "$devID",
+    "deviceModel": "$devID",
+    "deviceName": "$devID",
+    "deviceOs": "Android",
+    "isEmulator": false,
+    "notificationToken": "eEBjxYrDSJyFw7N-DpEGNG:APA91bEZnWo-TDdSgVCzQcJq3gHioJtFThNyxw6PsgOCI1JHDzd55yqG-QZwAZRj4pwICrXo5VODiUYom7Fsf4Ql66-CWHFumNA2ynrKEP21bstPBMgwsN-3G_Ek0ZLcoKtVMg5oN6-gz",
+    "osVersion": "11"
+    },
+    "username": "$acctname",
+    "password": "$password"
+    }
+    DATA;
+    curl_setopt($curll, CURLOPT_POSTFIELDS, $DeviceInfo);
+    $respp = curl_exec($curll);
+    curl_close($curll);
+    $loginstatus = json_decode($respp);
+
+    if ($loginstatus != NULL)
+    {
+        $userid=$loginstatus->data->user->id;
+    } else {$userid="error";}
+
+    return $userid; 
+} //end getid
+
+
+
 
 ?>
